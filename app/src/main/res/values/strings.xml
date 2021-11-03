@@ -3,4 +3,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="settings">Settings</string>
+    <string name="profileimage">profileImage</string>
+    <string name="informaci_n_b_sica">Información Básica</string>
+    <string name="edit_profile_icon">Edit profile icon</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="bperalta96_gmail_com">bperalta96@gmail.com</string>
+    <string name="email">Email:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="bruno_peralta">Bruno Peralta</string>
 </resources>
