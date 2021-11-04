@@ -24,4 +24,6 @@
     <string name="email">Email:</string>
     <string name="nombre">Nombre:</string>
     <string name="bruno_peralta">Bruno Peralta</string>
+    <string name="exercise_card_info_button_description">Info</string>
+    <string name="back_button_description">Go Back</string>
 </resources>
