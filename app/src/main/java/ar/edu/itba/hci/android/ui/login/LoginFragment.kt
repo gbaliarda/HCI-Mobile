@@ -1,5 +1,6 @@
 package ar.edu.itba.hci.android.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
@@ -15,6 +16,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import ar.edu.itba.hci.android.MainActivity
 import ar.edu.itba.hci.android.databinding.FragmentLoginBinding
 
 import ar.edu.itba.hci.android.R
@@ -109,6 +111,8 @@ class LoginFragment : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
