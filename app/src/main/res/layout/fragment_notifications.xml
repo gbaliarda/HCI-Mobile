@@ -117,10 +117,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="40dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/bperalta96_gmail_com"
         android:textColor="#000000"
         android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nameProfile3"
         app:layout_constraintTop_toBottomOf="@+id/userProfileName" />
 
