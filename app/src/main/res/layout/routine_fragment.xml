@@ -19,13 +19,11 @@
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="0"
-            android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/back_button_description"
-            android:src="@drawable/ic_arrow_back"
-            android:tint="@color/material_on_surface_emphasis_high_type" />
+            android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:id="@+id/routineName"
@@ -43,23 +41,19 @@
 
         <ImageButton
             android:id="@+id/favoriteButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="0"
-            android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/back_button_description"
-            android:src="@drawable/ic_favorite"
-            android:tint="@color/material_on_surface_emphasis_high_type" />
+            android:src="@drawable/ic_favorite" />
 
         <ImageButton
             android:id="@+id/backButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="0"
-            android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/back_button_description"
-            android:src="@drawable/ic_share"
-            android:tint="@color/material_on_surface_emphasis_high_type" />
+            android:src="@drawable/ic_share" />
 
     </LinearLayout>
 

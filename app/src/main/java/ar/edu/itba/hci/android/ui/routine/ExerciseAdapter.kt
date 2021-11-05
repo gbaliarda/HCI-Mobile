@@ -24,7 +24,7 @@ class ExerciseAdapter()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.binding
-        val item = exercises[position];
+        val item = exercises[position%exercises.size];
 
         binding.name.text = item.name;
 
@@ -37,13 +37,13 @@ class ExerciseAdapter()
             binding.repetitions.text = "${binding.repetitions.text} x${item.sets}";
     }
 
-    override fun getItemCount() = exercises.size;
+    override fun getItemCount() = Int.MAX_VALUE;
 
     class ViewHolder(val binding:ExerciseCardLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
             init {
                 binding.infoButton.setOnClickListener {
-                    println("Clicked ${binding.name} card")
+                    println("Clicked ${binding.name.text} card")
                 }
             }
     }

@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:cardCornerRadius="14dp"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        android:backgroundTint="?attr/colorBackgroundFloating">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -34,7 +35,7 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/design_default_color_on_secondary"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     tools:text="Sentadillas" />
@@ -56,9 +57,8 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
-                android:backgroundTint="@color/white"
                 android:contentDescription="@string/exercise_card_info_button_description"
-                android:tint="@color/orange_light"
+                android:tint="?attr/colorPrimary"
                 app:srcCompat="@drawable/ic_info"
                 tools:src="@drawable/ic_eye_open" />
         </RelativeLayout>
