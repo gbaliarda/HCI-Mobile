@@ -5,13 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class RoutineViewModel : ViewModel() {
-    val exercises: MutableLiveData<List<Exercise>> by lazy {
-        MutableLiveData<List<Exercise>>().also {
-            it.value = listOf(
-                Exercise("Sentadillas", 5, null, 3),
-                Exercise("Soga", null, 20, 4),
-                Exercise("Estocadas", 5, null, 3),
-            )
+    val routine: LiveData<Routine> by lazy {
+        MutableLiveData<Routine>().also {
+            it.value = Routine("Piernas", 7, listOf(
+                Exercise("Sentadillas", Exercise.RepetitionType.TIMES, 5, 3),
+                Exercise("Soga", Exercise.RepetitionType.SECONDS, 20, 4),
+                Exercise("Estocadas", Exercise.RepetitionType.TIMES, 5, 3),
+            ))
+        }
+    }
+
+    val liked: MutableLiveData<Boolean> by lazy {
+        MutableLiveData<Boolean>().also {
+            it.value = false
         }
     }
 }

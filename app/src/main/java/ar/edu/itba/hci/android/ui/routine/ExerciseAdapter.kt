@@ -1,17 +1,24 @@
 package ar.edu.itba.hci.android.ui.routine
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.ExerciseCardLayoutBinding
+import com.google.android.material.snackbar.Snackbar
 
-class ExerciseAdapter()
+class ExerciseAdapter(private val context:Context)
     : RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
 
     var exercises:List<Exercise> = listOf()
+        @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,26 +31,29 @@ class ExerciseAdapter()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.binding
-        val item = exercises[position%exercises.size];
+        val item = exercises[position]
 
-        binding.name.text = item.name;
+        binding.name.text = item.name
 
-        if(item.repetitions != null)
-            binding.repetitions.text = "${item.repetitions} repeticiones"
-        else if(item.seconds != null)
-            binding.repetitions.text = "${item.seconds} segundos"
+        var repetitions = when(item.repetitionType) {
+            Exercise.RepetitionType.TIMES -> context.getString(R.string.exercise_repetitions, item.repetitionValue)
+            Exercise.RepetitionType.SECONDS -> context.getString(R.string.exercise_seconds, item.repetitionValue)
+        }
 
-        if(item.sets != null)
-            binding.repetitions.text = "${binding.repetitions.text} x${item.sets}";
+        if(item.sets > 1)
+            repetitions += context.getString(R.string.exercise_sets, item.sets)
+
+        binding.repetitions.text = repetitions
     }
 
-    override fun getItemCount() = Int.MAX_VALUE;
+    override fun getItemCount() = exercises.size
 
     class ViewHolder(val binding:ExerciseCardLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
             init {
                 binding.infoButton.setOnClickListener {
-                    println("Clicked ${binding.name.text} card")
+                    Snackbar.make(binding.root,"Not Implemented", Snackbar.LENGTH_SHORT)
+                        .show()
                 }
             }
     }
