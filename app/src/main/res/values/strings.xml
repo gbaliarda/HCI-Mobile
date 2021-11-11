@@ -42,4 +42,7 @@
     <string name="exercise_repetitions">%d repeticiones</string>
     <string name="exercise_sets">" x%d"</string>
     <string name="routine_review_button">Puntuar</string>
+    <string name="explorar_rutinas">Explorar Rutinas</string>
+    <string name="filtrar">filtrar</string>
+    <string name="buscar">buscar</string>
 </resources>
