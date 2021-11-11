@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     android:layout_margin="0dp"
     android:padding="0dp"
-    android:paddingLeft="@dimen/fragment_horizontal_margin"
-    android:paddingTop="@dimen/fragment_vertical_margin"
-    android:paddingRight="@dimen/fragment_horizontal_margin"
-    android:paddingBottom="@dimen/fragment_vertical_margin"
     tools:context=".ui.login.LoginFragment">
 
     <EditText

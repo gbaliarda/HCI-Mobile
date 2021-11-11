@@ -13,6 +13,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <!-- Strings related to home -->
+    <string name="mis_rutinas">Mis Rutinas</string>
+    <string name="routine_card_fav_button_description">Me gusta</string>
     <!-- Strings related to profile -->
     <string name="mi_perfil">Mi Perfil</string>
     <string name="settings">Settings</string>
