@@ -1,53 +1,95 @@
 package ar.edu.itba.hci.android.ui.routine
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ShareCompat
+import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ar.edu.itba.hci.android.R
-import ar.edu.itba.hci.android.databinding.RoutineFragmentBinding
+import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = RoutineFragment()
-    }
+    private var _binding: FragmentRoutineBinding? = null
+    private val binding get() = _binding!!
 
     private val model: RoutineViewModel by viewModels()
-
-    private val exerciseAdapter = ExerciseAdapter();
-
-    private var _binding: RoutineFragmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var exerciseAdapter:ExerciseAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = RoutineFragmentBinding.inflate(inflater, container, false);
+    ): View {
+        _binding = FragmentRoutineBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        model.exercises.observe(viewLifecycleOwner, Observer {
-            exerciseAdapter.exercises = it
-        })
+        exerciseAdapter = ExerciseAdapter(requireContext())
 
         binding.exerciseRecycler.layoutManager = LinearLayoutManager(context)
-        binding.exerciseRecycler.adapter = exerciseAdapter;
-        binding.routineName.text = "Rutina1"
+        binding.exerciseRecycler.adapter = exerciseAdapter
+
+        binding.shareButton.setOnClickListener { shareHandler() }
+        binding.reviewButton.setOnClickListener { reviewHandler() }
+        binding.startButton.setOnClickListener { startHandler() }
+        binding.likeButton.setOnClickListener {
+            if(model.liked.value != null) {
+                model.liked.value = !model.liked.value!!
+            }
+        }
+
+        model.routine.observe(viewLifecycleOwner, {
+            exerciseAdapter.exercises = it.exercises
+            binding.routineName.text = it.name
+            binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
+            binding.exerciseCount.text = getString(R.string.routine_exercise_count, it.exercises.size)
+        })
+        model.liked.observe(viewLifecycleOwner, {
+            likeHandler(it)
+        })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun likeHandler(liked:Boolean) {
+        binding.likeButton.setImageDrawable(
+            when(liked) {
+                true -> ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null)
+                false -> ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null)
+            }
+        )
+    }
+
+    private fun shareHandler() {
+        model.routine.value?.let {
+            ShareCompat.IntentBuilder.from(requireActivity())
+                .setType("text/x-uri")
+                .setChooserTitle(getString(R.string.share_title))
+                .setText(it.shareLink)
+                .startChooser()
+        }
+    }
+
+    private fun reviewHandler() {
+        notImplemented()
+    }
+
+    private fun startHandler() {
+        notImplemented()
+    }
+
+    private fun notImplemented() {
+        Snackbar.make(binding.root,"Not Implemented", Snackbar.LENGTH_SHORT)
+            .show()
     }
 }

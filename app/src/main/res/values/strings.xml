@@ -31,6 +31,17 @@
     <string name="back_button_description">Go Back</string>
     <string name="Exercise_name">Soga</string>
     <string name="RepetitionOrTime_value">14</string>
+    <string name="share_button_description">Share</string>
+    <string name="like_button_description">Like</string>
+    <string name="share_title">Share routine link</string>
+    <string name="dash">-</string>
+    <string name="routine_start_button">Iniciar</string>
+    <string name="routine_minutes">%d minutos</string>
+    <string name="routine_exercise_count">%d ejercicios</string>
+    <string name="exercise_seconds">%d segundos</string>
+    <string name="exercise_repetitions">%d repeticiones</string>
+    <string name="exercise_sets">" x%d"</string>
+    <string name="routine_review_button">Puntuar</string>
     <string name="explorar_rutinas">Explorar Rutinas</string>
     <string name="filtrar">filtrar</string>
     <string name="buscar">buscar</string>
