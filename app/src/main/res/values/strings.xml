@@ -31,4 +31,7 @@
     <string name="back_button_description">Go Back</string>
     <string name="Exercise_name">Soga</string>
     <string name="RepetitionOrTime_value">14</string>
+    <string name="explorar_rutinas">Explorar Rutinas</string>
+    <string name="filtrar">filtrar</string>
+    <string name="buscar">buscar</string>
 </resources>
