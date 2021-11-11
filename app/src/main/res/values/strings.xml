@@ -24,4 +24,6 @@
     <string name="email">Email:</string>
     <string name="nombre">Nombre:</string>
     <string name="bruno_peralta">Bruno Peralta</string>
+    <string name="Exercise_name">Soga</string>
+    <string name="RepetitionOrTime_value">14</string>
 </resources>
