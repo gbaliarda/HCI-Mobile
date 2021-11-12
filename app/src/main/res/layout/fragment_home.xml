@@ -18,7 +18,7 @@
         android:gravity="center"
         android:text="@string/mis_rutinas"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +30,11 @@
         android:layout_height="30dp"
         android:layout_marginEnd="12dp"
         android:src="@drawable/ic_search"
-        app:tint="@color/black"
+        app:tint="?attr/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="@+id/myRoutines"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/myRoutines" />
+        app:layout_constraintTop_toTopOf="@+id/myRoutines"
+        android:contentDescription="@string/routines_search_button" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -41,10 +42,11 @@
         android:layout_height="30dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/ic_filter"
-        app:tint="@color/black"
+        app:tint="?attr/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search" />
+        app:layout_constraintTop_toTopOf="@+id/search"
+        android:contentDescription="@string/routines_filter_button" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -62,7 +64,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/orange_light">
+            android:background="?attr/colorPrimaryContainer">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sentadillas"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     android:textSize="19sp"
                     android:textStyle="bold"
                     tools:text="Sentadillas" />
@@ -90,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="75% completado"
-                    android:textColor="#CCFFFFFF"
+                    android:textColor="?attr/colorOnPrimaryContainer"
                     tools:text="75% completado" />
             </LinearLayout>
 
@@ -106,7 +108,7 @@
                 android:layout_marginEnd="33dp"
                 android:layout_marginBottom="25dp"
                 android:src="@drawable/ic_arrow_right"
-                app:tint="@color/white" />
+                app:tint="?attr/colorOnPrimaryContainer" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

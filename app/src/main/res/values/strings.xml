@@ -45,4 +45,7 @@
     <string name="explorar_rutinas">Explorar Rutinas</string>
     <string name="filtrar">filtrar</string>
     <string name="buscar">buscar</string>
+    <string name="traning">Traning</string>
+    <string name="routines_search_button">Buscar</string>
+    <string name="routines_filter_button">Filtrar</string>
 </resources>

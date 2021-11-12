@@ -22,7 +22,7 @@
             android:gravity="center"
             android:text="@string/mi_perfil"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,8 @@
             android:contentDescription="@string/settings"
             android:src="@drawable/ic_ic_config"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/myProfile" />
+            app:layout_constraintTop_toTopOf="@+id/myProfile"
+            app:tint="?attr/colorOnSurface" />
 
         <ImageView
             android:id="@+id/profileImg"
@@ -50,7 +51,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/myProfile"
             app:layout_constraintVertical_bias="0.09"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            app:tint="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/titleProfile"
@@ -60,7 +62,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/informacion_basica"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileImg" />
@@ -74,7 +76,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.393"
             app:layout_constraintStart_toEndOf="@+id/titleProfile"
-            app:layout_constraintTop_toTopOf="@+id/titleProfile" />
+            app:layout_constraintTop_toTopOf="@+id/titleProfile"
+            app:tint="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/userProfileName"
@@ -83,7 +86,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/bruno_peralta"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/nameProfile"
             app:layout_constraintTop_toTopOf="@+id/nameProfile" />
@@ -96,7 +99,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/nombre"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleProfile" />
@@ -109,7 +112,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/email"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameProfile" />
@@ -121,7 +124,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/bperalta96_gmail_com"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/nameProfile3"
             app:layout_constraintTop_toTopOf="@+id/nameProfile3" />

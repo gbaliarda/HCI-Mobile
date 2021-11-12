@@ -7,12 +7,12 @@
     android:clipToPadding="false"
     android:padding="6dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:cardCornerRadius="14dp"
-        app:cardElevation="4dp"
-        android:backgroundTint="?attr/colorBackgroundFloating">
+        style="?attr/materialCardViewFilledStyle"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                     android:id="@+id/repetitions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="?attr/colorOnSurface"
                     tools:text="5 repeticiones x 3" />
             </LinearLayout>
 
@@ -58,10 +59,10 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:contentDescription="@string/exercise_card_info_button_description"
-                android:tint="?attr/colorPrimary"
                 app:srcCompat="@drawable/ic_info"
-                tools:src="@drawable/ic_eye_open" />
+                tools:src="@drawable/ic_eye_open"
+                app:tint="?attr/colorPrimary" />
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>
