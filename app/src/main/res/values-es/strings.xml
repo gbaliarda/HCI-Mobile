@@ -34,4 +34,8 @@
     <string name="filtrar">Filtrar</string>
     <string name="buscar">Buscar</string>
     <string name="pausa">Pausa</string>
+    <string name="guardar">Guardar</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="horario_de_recordatorio_diario">Horario de recordatorio diario</string>
+    <string name="bienvenido">Bienvenido</string>
 </resources>
