@@ -1,49 +1,50 @@
 <resources>
-    <string name="app_name">traning</string>
-    <string name="title_home">Inicio</string>
-    <string name="title_dashboard">Rutina</string>
-    <string name="title_profile">Perfil</string>
+    <string name="app_name" translatable="false">traning</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Routine</string>
+    <string name="title_profile">Profile</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email" translatable="false">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Iniciar sesión</string>
-    <string name="action_sign_up">Registrarse</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <!-- Strings related to home -->
-    <string name="mis_rutinas">Mis Rutinas</string>
-    <string name="routine_card_fav_button_description">Me gusta</string>
+    <string name="mis_rutinas">My Routines</string>
+    <string name="routine_card_fav_button_description">Like</string>
     <!-- Strings related to profile -->
-    <string name="mi_perfil">Mi Perfil</string>
+    <string name="mi_perfil">My Profile</string>
     <string name="settings">Settings</string>
-    <string name="profileimage">profileImage</string>
-    <string name="informacion_basica">Información Básica</string>
+    <string name="profileimage">Profile Image</string>
+    <string name="informacion_basica">Basic Information</string>
     <string name="edit_profile_icon">Edit profile icon</string>
-    <string name="cerrar_sesion">Cerrar sesión</string>
-    <string name="bperalta96_gmail_com">bperalta96@gmail.com</string>
-    <string name="email">Email:</string>
-    <string name="nombre">Nombre:</string>
-    <string name="bruno_peralta">Bruno Peralta</string>
-    <string name="exercise_card_info_button_description">Info</string>
+    <string name="cerrar_sesion">Log out</string>
+    <string name="bperalta96_gmail_com" translatable="false">bperalta96@gmail.com</string>
+    <string name="email" translatable="false">Email:</string>
+    <string name="nombre">Name:</string>
+    <string name="bruno_peralta" translatable="false">Bruno Peralta</string>
+    <string name="exercise_card_info_button_description" translatable="false">Info</string>
     <string name="back_button_description">Go Back</string>
-    <string name="Exercise_name">Soga</string>
-    <string name="RepetitionOrTime_value">14</string>
+    <string name="Exercise_name" translatable="false">Soga</string>
+    <string name="RepetitionOrTime_value" translatable="false">14</string>
     <string name="share_button_description">Share</string>
     <string name="like_button_description">Like</string>
     <string name="share_title">Share routine link</string>
-    <string name="dash">-</string>
-    <string name="routine_start_button">Iniciar</string>
-    <string name="routine_minutes">%d minutos</string>
-    <string name="routine_exercise_count">%d ejercicios</string>
-    <string name="exercise_seconds">%d segundos</string>
-    <string name="exercise_repetitions">%d repeticiones</string>
-    <string name="exercise_sets">" x%d"</string>
-    <string name="routine_review_button">Puntuar</string>
-    <string name="explorar_rutinas">Explorar Rutinas</string>
-    <string name="filtrar">filtrar</string>
-    <string name="buscar">buscar</string>
+    <string name="dash" translatable="false">-</string>
+    <string name="routine_start_button">Start</string>
+    <string name="routine_minutes">%d minutes</string>
+    <string name="routine_exercise_count">%d exercises</string>
+    <string name="exercise_seconds">%d seconds</string>
+    <string name="exercise_repetitions">%d repetitions</string>
+    <string name="exercise_sets" translatable="false">" x%d"</string>
+    <string name="routine_review_button">Score</string>
+    <string name="explorar_rutinas">Explore Routines</string>
+    <string name="filtrar">Filter</string>
+    <string name="buscar">Search</string>
+    <string name="pausa">Pause</string>
     <string name="guardar">Guardar</string>
 </resources>
