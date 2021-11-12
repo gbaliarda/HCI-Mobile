@@ -1,11 +1,19 @@
 package ar.edu.itba.hci.android.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import ar.edu.itba.hci.android.MainActivity
+import ar.edu.itba.hci.android.Notifications
+import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -33,6 +41,20 @@ class ProfileFragment : Fragment() {
         //    textView.text = it
         // })
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val settingsButton = binding.settings
+
+        settingsButton.setOnClickListener {
+            val newFragment = Notifications()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment_activity_main, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     override fun onDestroyView() {
