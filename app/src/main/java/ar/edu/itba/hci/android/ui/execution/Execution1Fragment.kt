@@ -1,4 +1,4 @@
-package ar.edu.itba.hci.android.ui.dashboard
+package ar.edu.itba.hci.android.ui.execution
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import ar.edu.itba.hci.android.R
 
-class ExecutionFragment : Fragment() {
+class Execution1Fragment : Fragment() {
 
     companion object {
-        fun newInstance() = ExecutionFragment()
+        fun newInstance() = Execution1Fragment()
     }
 
-    private lateinit var viewModel: ExecutionViewModel
+    private lateinit var a1ViewModel: Execution1ViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_execution, container, false)
+        return inflater.inflate(R.layout.fragment_execution1, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ExecutionViewModel::class.java)
+        a1ViewModel = ViewModelProvider(this).get(Execution1ViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
