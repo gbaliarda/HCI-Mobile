@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import ar.edu.itba.hci.android.Notifications
+import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -26,13 +28,21 @@ class ProfileFragment : Fragment() {
                 ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        // val textView: TextView = binding.textNotifications
-        // notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-        //    textView.text = it
-        // })
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val settingsButton = binding.settings
+
+        settingsButton.setOnClickListener {
+            val newFragment = Notifications()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.nav_host_fragment_activity_main, newFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     override fun onDestroyView() {

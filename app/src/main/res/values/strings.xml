@@ -46,4 +46,5 @@
     <string name="filtrar">Filter</string>
     <string name="buscar">Search</string>
     <string name="pausa">Pause</string>
+    <string name="guardar">Guardar</string>
 </resources>
