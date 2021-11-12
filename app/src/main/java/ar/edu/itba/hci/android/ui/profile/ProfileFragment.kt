@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import ar.edu.itba.hci.android.Notifications
+import ar.edu.itba.hci.android.NotificationsFragment
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentProfileBinding
 
@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
         val settingsButton = binding.settings
 
         settingsButton.setOnClickListener {
-            val newFragment = Notifications()
+            val newFragment = NotificationsFragment()
             val transaction = parentFragmentManager.beginTransaction()
             transaction.replace(R.id.nav_host_fragment_activity_main, newFragment)
             transaction.addToBackStack(null)
