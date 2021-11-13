@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 const val notificationID = 1
 const val channelID = "channel1"
@@ -15,6 +16,8 @@ class Notification : BroadcastReceiver()
 {
     override fun onReceive(context: Context, intent: Intent)
     {
+        // intent para ir a otra activity al clickearla
+
         val notification = NotificationCompat.Builder(context, channelID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(intent.getStringExtra(titleExtra))

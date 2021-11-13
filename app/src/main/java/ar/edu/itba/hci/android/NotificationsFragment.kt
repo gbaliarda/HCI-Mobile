@@ -57,13 +57,25 @@ class NotificationsFragment : Fragment() {
         )
 
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = getTime()
-        alarmManager.setExactAndAllowWhileIdle(
+
+        val calendar = GregorianCalendar.getInstance().apply {
+            if (get(Calendar.MINUTE) >= binding.timePicker.minute && get(Calendar.HOUR_OF_DAY) >= binding.timePicker.hour) {
+                add(Calendar.DAY_OF_MONTH, 1)
+            }
+
+            set(Calendar.HOUR_OF_DAY, binding.timePicker.hour)
+            set(Calendar.MINUTE, binding.timePicker.minute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        alarmManager.setRepeating(
             AlarmManager.RTC_WAKEUP,
-            time,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
-        showAlert(time)
+        showAlert(calendar.timeInMillis)
     }
 
     private fun showAlert(time: Long)
@@ -78,19 +90,6 @@ class NotificationsFragment : Fragment() {
                 "Notification set at: " + dateFormat.format(date) + " " + timeFormat.format(date))
             .setPositiveButton("Okay"){_,_ ->}
             .show()
-    }
-
-    private fun getTime(): Long
-    {
-        val minute = binding.timePicker.minute
-        val hour = binding.timePicker.hour
-        val day = 12
-        val month = 11
-        val year = 2021
-
-        val calendar = Calendar.getInstance()
-        calendar.set(year, month, day, hour, minute)
-        return calendar.timeInMillis
     }
 
     private fun createNotificationChannel()
