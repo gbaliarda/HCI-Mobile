@@ -12,14 +12,27 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="ar.edu.itba.hci.android.ui.dashboard.ExecutionFragment"
+        android:id="@+id/navigation_routine"
+        android:name="ar.edu.itba.hci.android.ui.routine.RoutineFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_execution" />
+        tools:layout="@layout/fragment_routine" >
+        <action
+            android:id="@+id/action_navigation_routine_to_execution1Fragment"
+            app:destination="@id/execution1Fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="ar.edu.itba.hci.android.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/execution1Fragment"
+        android:name="ar.edu.itba.hci.android.ui.execution.Execution1Fragment"
+        android:label="fragment_execution"
+        tools:layout="@layout/fragment_execution" >
+        <action
+            android:id="@+id/action_execution1Fragment_to_navigation_routine"
+            app:destination="@id/navigation_routine" />
+    </fragment>
 </navigation>
