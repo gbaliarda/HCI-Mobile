@@ -84,10 +84,10 @@ class RoutineFragment : Fragment() {
 
     private fun startHandler() {
 
-        // Get the possibles actions to translate through with this fragment
-        val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
-        // Navigate to execution 1 fragment
-        findNavController().navigate(action)
+//        // Get the possibles actions to translate through with this fragment
+//        val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
+//        // Navigate to execution 1 fragment
+//        findNavController().navigate(action)
     }
 
     private fun notImplemented() {

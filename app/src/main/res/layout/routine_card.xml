@@ -10,7 +10,7 @@
     app:cardElevation="8dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:gravity="center">
 
@@ -47,6 +47,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <Button
@@ -66,6 +67,7 @@
                     android:backgroundTint="#FFFFFF"
                     android:minWidth="48dp"
                     android:minHeight="48dp"
+                    android:scaleType="center"
                     android:tint="@color/orange"
                     app:srcCompat="@drawable/ic_share" />
 
@@ -79,6 +81,7 @@
                     android:backgroundTint="@color/white"
                     android:contentDescription="@string/routine_card_fav_button_description"
                     android:minHeight="48dp"
+                    android:scaleType="center"
                     android:tint="@color/orange_light"
                     app:srcCompat="@drawable/ic_favorite_border"
                     tools:ignore="ImageContrastCheck"

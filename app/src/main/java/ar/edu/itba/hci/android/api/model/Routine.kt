@@ -10,5 +10,10 @@ data class Routine(
     val score:Int?,
     val difficulty:String,
     val category: Category?,
-    val user: User
-)
+    val user: User,
+//    val metadata:Metadata
+) {
+//    data class Metadata(
+//
+//    )
+}
