@@ -17,11 +17,14 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import ar.edu.itba.hci.android.MainActivity
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.databinding.FragmentLoginBinding
 
 import ar.edu.itba.hci.android.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
@@ -47,6 +50,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        loginViewModel.checkToken()
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password

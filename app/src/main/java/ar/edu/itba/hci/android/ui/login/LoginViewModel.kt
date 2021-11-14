@@ -1,10 +1,7 @@
 package ar.edu.itba.hci.android.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.data.LoginRepository
 import ar.edu.itba.hci.android.data.Result
@@ -27,6 +24,20 @@ class LoginViewModel(
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
+
+    fun checkToken() {
+        application.preferences.authToken?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    val user = userRepository.getCurrentUser()
+                    _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = user.firstName!!)))
+                }
+                catch (ex:Exception) {
+                    application.preferences.authToken = null
+                }
+            }
+        }
+    }
 
     fun login(username: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
