@@ -30,7 +30,7 @@
         android:id="@+id/execution1Fragment"
         android:name="ar.edu.itba.hci.android.ui.execution.Execution1Fragment"
         android:label="fragment_execution"
-        tools:layout="@layout/fragment_execution1" >
+        tools:layout="@layout/fragment_execution" >
         <action
             android:id="@+id/action_execution1Fragment_to_navigation_routine"
             app:destination="@id/navigation_routine" />
