@@ -14,7 +14,8 @@
     <fragment
         android:id="@+id/navigation_routine"
         android:name="ar.edu.itba.hci.android.ui.routine.RoutineFragment"
-        android:label="@string/title_dashboard">
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_routine">
         <action
             android:id="@+id/action_navigation_routine_to_execution1Fragment"
             app:destination="@id/executionFragment" />
@@ -32,7 +33,8 @@
     <fragment
         android:id="@+id/executionFragment"
         android:name="ar.edu.itba.hci.android.ui.execution.ExecutionFragment"
-        android:label="fragment_execution">
+        android:label="fragment_execution"
+        tools:layout="@layout/fragment_execution">
         <action
             android:id="@+id/action_executionFragment_to_navigation_routine"
             app:destination="@id/navigation_routine" />

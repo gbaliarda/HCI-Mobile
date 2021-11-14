@@ -33,7 +33,6 @@ class Notifications : Fragment() {
         backButton.setOnClickListener {
             // Get the possibles actions to translate through with this fragment
             val action = NotificationsDirections.actionNotificationsToNavigationProfile()
-            // Navigate to execution 1 fragment
             findNavController().navigate(action)
         }
     }
