@@ -1,27 +1,23 @@
 package ar.edu.itba.hci.android.ui.execution
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import ar.edu.itba.hci.android.R
-import ar.edu.itba.hci.android.databinding.FragmentExecution1Binding
+import ar.edu.itba.hci.android.databinding.FragmentExecutionBinding
 import androidx.navigation.fragment.findNavController
-import ar.edu.itba.hci.android.ui.routine.RoutineFragmentDirections
-import ar.edu.itba.hci.android.ui.routine.RoutineViewModel
 
-class Execution1Fragment : Fragment() {
-    private var _binding:FragmentExecution1Binding? = null
+class ExecutionFragment : Fragment() {
+    private var _binding:FragmentExecutionBinding? = null
     private val binding get() = _binding!!
 
-    private val model: Execution1ViewModel by viewModels() // CODIGO VIEWMODEL
+    private val model: ExecutionViewModel by viewModels() // CODIGO VIEWMODEL
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentExecution1Binding.inflate(inflater, container, false)
+        _binding = FragmentExecutionBinding.inflate(inflater, container, false)
 
         return  binding.root;
     }
