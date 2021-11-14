@@ -8,6 +8,7 @@ import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
@@ -20,12 +21,9 @@ class RoutineFragment : Fragment() {
     private val model: RoutineViewModel by viewModels()
     private lateinit var exerciseAdapter:ExerciseAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRoutineBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding.root;
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,7 +83,11 @@ class RoutineFragment : Fragment() {
     }
 
     private fun startHandler() {
-        notImplemented()
+
+        // Get the possibles actions to translate through with this fragment
+        val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
+        // Navigate to execution 1 fragment
+        findNavController().navigate(action)
     }
 
     private fun notImplemented() {
