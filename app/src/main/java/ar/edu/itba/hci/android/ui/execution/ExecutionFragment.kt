@@ -27,7 +27,7 @@ class ExecutionFragment : Fragment() {
 
         binding.backButtom.setOnClickListener{
             // Get the possibles actions to translate through with this fragment
-            val action = Execution1FragmentDirections.actionExecution1FragmentToNavigationRoutine()
+            val action = ExecutionFragmentDirections.actionExecutionFragmentToNavigationRoutine()
             // Navigate to execution 1 fragment
             findNavController().navigate(action)
         }

@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import ar.edu.itba.hci.android.Notifications
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentProfileBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionFragmentDirections
 
 class ProfileFragment : Fragment() {
 
@@ -37,11 +39,10 @@ class ProfileFragment : Fragment() {
         val settingsButton = binding.settings
 
         settingsButton.setOnClickListener {
-            val newFragment = Notifications()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.nav_host_fragment_activity_main, newFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            // Get the possibles actions to translate through with this fragment
+            val action = ProfileFragmentDirections.actionNavigationProfileToNotifications()
+            // Navigate to execution 1 fragment
+            findNavController().navigate(action)
         }
     }
 

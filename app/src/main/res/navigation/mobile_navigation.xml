@@ -14,25 +14,36 @@
     <fragment
         android:id="@+id/navigation_routine"
         android:name="ar.edu.itba.hci.android.ui.routine.RoutineFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_routine" >
+        android:label="@string/title_dashboard">
         <action
             android:id="@+id/action_navigation_routine_to_execution1Fragment"
-            app:destination="@id/execution1Fragment" />
+            app:destination="@id/executionFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="ar.edu.itba.hci.android.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/execution1Fragment"
-        android:name="ar.edu.itba.hci.android.ui.execution.Execution1Fragment"
-        android:label="fragment_execution"
-        tools:layout="@layout/fragment_execution" >
+        tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_execution1Fragment_to_navigation_routine"
+            android:id="@+id/action_navigation_profile_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
+    <fragment
+        android:id="@+id/executionFragment"
+        android:name="ar.edu.itba.hci.android.ui.execution.ExecutionFragment"
+        android:label="fragment_execution">
+        <action
+            android:id="@+id/action_executionFragment_to_navigation_routine"
             app:destination="@id/navigation_routine" />
+    </fragment>
+    <fragment
+        android:id="@+id/notifications"
+        android:name="ar.edu.itba.hci.android.Notifications"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_notifications_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
     </fragment>
 </navigation>

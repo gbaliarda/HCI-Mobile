@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import ar.edu.itba.hci.android.databinding.FragmentNotificationsBinding
+import ar.edu.itba.hci.android.ui.profile.ProfileFragmentDirections
 
 class Notifications : Fragment() {
 
@@ -29,7 +31,10 @@ class Notifications : Fragment() {
         val backButton = binding.back
 
         backButton.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            // Get the possibles actions to translate through with this fragment
+            val action = NotificationsDirections.actionNotificationsToNavigationProfile()
+            // Navigate to execution 1 fragment
+            findNavController().navigate(action)
         }
     }
 

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
 
 
 object Api {
-    private const val BASE_URL = "http://192.168.0.101:8080/api/"
+    private const val BASE_URL = "http://10.0.2.2:8080/api/"
     private const val CONNECT_TIMEOUT = 60L
     private const val READ_TIMEOUT = 60L
     private const val WRITE_TIMEOUT = 60L
