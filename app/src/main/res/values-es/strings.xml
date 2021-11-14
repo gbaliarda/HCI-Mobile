@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Rutina</string>
+    <string name="title_profile">Perfil</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_sign_up">Registrarse</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
+    <string name="welcome">Bienvenido %s!</string>
+    <string name="invalid_username">Usuario inválido</string>
+    <string name="invalid_password">La contraseña debe tener >5 caracteres</string>
+    <string name="login_failed">Error al iniciar sesión</string>
+    <string name="mis_rutinas">Mis Rutinas</string>
+    <string name="routine_card_fav_button_description">Me gusta</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="settings">Configuración</string>
+    <string name="profileimage">Imagen de perfil</string>
+    <string name="informacion_basica">Información Básica</string>
+    <string name="edit_profile_icon">Icono editar perfil</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+    <string name="nombre">"Nombre: "</string>
+    <string name="back_button_description">Regresar</string>
+    <string name="share_button_description">Compartir</string>
+    <string name="like_button_description">Me gusta</string>
+    <string name="share_title">Compartir link</string>
+    <string name="routine_start_button">Iniciar</string>
+    <string name="routine_minutes">%d minutos</string>
+    <string name="routine_exercise_count">%d ejercicios</string>
+    <string name="exercise_seconds">%d segundos</string>
+    <string name="exercise_repetitions">%d repeticiones</string>
+    <string name="routine_review_button">Puntuar</string>
+    <string name="explorar_rutinas">Explorar Rutinas</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="buscar">Buscar</string>
+    <string name="pausa">Pausa</string>
+    <string name="guardar">Guardar</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="horario_de_recordatorio_diario">Horario de recordatorio diario</string>
+    <string name="bienvenido">Bienvenido</string>
+</resources>
