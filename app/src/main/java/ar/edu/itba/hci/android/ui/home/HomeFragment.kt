@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
+import ar.edu.itba.hci.android.ui.FilterFragment
 
 class HomeFragment : Fragment() {
 
@@ -35,6 +36,12 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        val bottomSheetFragment = FilterFragment()
+
+        binding.filterBtn.setOnClickListener {
+            bottomSheetFragment.show(parentFragmentManager, "BottomSheetDialog")
+        }
 
         return binding.root
     }

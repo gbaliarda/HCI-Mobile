@@ -70,4 +70,7 @@ dependencies {
     def okhttp_version = "4.9.2"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // modal bottom sheet filter fragment
+    implementation 'com.google.android.material:material:1.4.0'
 }
