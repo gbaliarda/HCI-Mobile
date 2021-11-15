@@ -80,7 +80,7 @@
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp"
-                tools:text="7 minutos" />
+                tools:text="7 min" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/exerciseCount"
+                android:id="@+id/difficulty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -103,32 +103,34 @@
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp"
-                tools:text="8 ejercicios" />
+                tools:text="intermedio" />
 
-            <Button
-                android:id="@+id/reviewButton"
-                style="@style/PrimaryButton"
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/routine_review_button"
-                android:textColor="#DD2C00"
-                android:textSize="16sp" />
+                android:scaleX="1.3"
+                android:scaleY="1.3" />
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/exerciseRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="32dp"
             android:paddingEnd="32dp"
             app:layout_constraintBottom_toTopOf="@+id/startButton"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            tools:listitem="@layout/exercise_card_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:listitem="@layout/cicle_layout" />
 
         <Button
             android:id="@+id/startButton"
@@ -155,5 +157,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exerciseRecycler"
             app:layout_constraintVertical_bias="1.0" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Descripción"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rutina ideal para ejercitar las piernas rapidamente en el patio de casa"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16dp" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

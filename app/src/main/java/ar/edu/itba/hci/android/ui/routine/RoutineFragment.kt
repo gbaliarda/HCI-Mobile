@@ -35,7 +35,7 @@ class RoutineFragment : Fragment() {
         binding.exerciseRecycler.adapter = exerciseAdapter
 
         binding.shareButton.setOnClickListener { shareHandler() }
-        binding.reviewButton.setOnClickListener { reviewHandler() }
+//        binding.ratingBar.setOnClickListener { reviewHandler() }
         binding.startButton.setOnClickListener { startHandler() }
         binding.likeButton.setOnClickListener {
             if(model.liked.value != null) {
@@ -47,7 +47,7 @@ class RoutineFragment : Fragment() {
             exerciseAdapter.exercises = it.exercises
             binding.routineName.text = it.name
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
-            binding.exerciseCount.text = getString(R.string.routine_exercise_count, it.exercises.size)
+            binding.difficulty.text = it.difficulty
         })
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
