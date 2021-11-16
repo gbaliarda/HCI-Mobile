@@ -4,19 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
 import com.google.android.material.snackbar.Snackbar
 
-class RoutineFragment : Fragment() {
+class RoutineFragment() : Fragment() {
     private var _binding: FragmentRoutineBinding? = null
     private val binding get() = _binding!!
+    private val args: RoutineFragmentArgs by navArgs<RoutineFragmentArgs>()
+
 
     private val model: RoutineViewModel by viewModels()
     private lateinit var exerciseAdapter:ExerciseAdapter
@@ -42,6 +46,8 @@ class RoutineFragment : Fragment() {
                 model.liked.value = !model.liked.value!!
             }
         }
+
+        Toast.makeText(context, args.routineId.toString(), Toast.LENGTH_LONG).show()
 
         model.routine.observe(viewLifecycleOwner, {
             exerciseAdapter.exercises = it.exercises

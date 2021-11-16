@@ -5,5 +5,5 @@ data class Routine(
     val durationMinutes:Int,
     val exercises:List<Exercise>
 ) {
-    val shareLink = "https://google.com/"
+    val shareLink = "http://traningapp.com/routine?id=1"
 }

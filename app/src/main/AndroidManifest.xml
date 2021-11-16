@@ -24,8 +24,14 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name" />
-
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="www.traningapp.com" android:pathPrefix="/routine" android:scheme="http" />
+            </intent-filter>
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
