@@ -7,5 +7,6 @@ data class User(
     val username:String,
     val firstName:String?,
     val lastName:String?,
-    val avatarUrl:String?
+    val avatarUrl:String?,
+    val email:String?
 )

@@ -23,10 +23,8 @@
     <string name="informacion_basica">Basic Information</string>
     <string name="edit_profile_icon">Edit profile icon</string>
     <string name="cerrar_sesion">Log out</string>
-    <string name="bperalta96_gmail_com" translatable="false">bperalta96@gmail.com</string>
     <string name="email" translatable="false">Email:</string>
     <string name="nombre">Name:</string>
-    <string name="bruno_peralta" translatable="false">Bruno Peralta</string>
     <string name="exercise_card_info_button_description" translatable="false">Info</string>
     <string name="back_button_description">Go Back</string>
     <string name="Exercise_name" translatable="false">Soga</string>
