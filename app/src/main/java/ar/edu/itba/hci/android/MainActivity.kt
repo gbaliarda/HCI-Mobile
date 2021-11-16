@@ -1,6 +1,8 @@
 package ar.edu.itba.hci.android
 
 import android.os.Bundle
+import android.util.EventLog
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -8,15 +10,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel : MainViewModel by viewModels()
+    private val mainViewmodel : MainViewModel by viewModels()
+    private val exViewModel : ExecutionViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +36,20 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
         navView.setupWithNavController(navController)
+
+        // p1 navcontroller p2 destination p3 arg
+        navController.addOnDestinationChangedListener{ _, destination, _ ->
+            if  (mainViewmodel.isExercising) {
+                if (destination.label != "fragment_execution") {
+                    binding.miniPlayer.visibility = View.VISIBLE
+                }
+                else
+                    binding.miniPlayer.visibility = View.GONE
+            }
+            else {
+                binding.miniPlayer.visibility = View.GONE
+            }
+        }
     }
 
     override fun onStart() {
@@ -41,10 +57,13 @@ class MainActivity : AppCompatActivity() {
         binding.controller.pause.setOnClickListener { pauseOrPlay() }
         binding.controller.play.setOnClickListener { pauseOrPlay() }
 
-        viewModel.isExercising.observe(this, Observer { if (it) { binding.included.visibility = View.VISIBLE
-        } })
-    }
 
+        binding.controller.cancelButton.setOnClickListener {
+            binding.miniPlayer.visibility = View.GONE
+            mainViewmodel.isExercising = false
+        }
+
+    }
 
     // Update action bar with the nav controller
     override fun onSupportNavigateUp(): Boolean {

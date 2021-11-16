@@ -5,12 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
-import ar.edu.itba.hci.android.databinding.ExerciseCardLayoutBinding
 import ar.edu.itba.hci.android.databinding.RoutineCardBinding
-import com.google.android.material.snackbar.Snackbar
 
 class RoutineAdapter(private val context:Context)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
