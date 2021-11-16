@@ -13,6 +13,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="bienvenido">Welcome</string>
     <!-- Strings related to home -->
     <string name="mis_rutinas">My Routines</string>
     <string name="routine_card_fav_button_description">Like</string>
@@ -44,8 +45,14 @@
     <string name="filtrar">Filter</string>
     <string name="buscar">Search</string>
     <string name="pausa">Pause</string>
+    <!-- Strings related to Notifications -->
     <string name="guardar">Save</string>
     <string name="notificaciones">Notifications</string>
     <string name="horario_de_recordatorio_diario">Daily reminder</string>
-    <string name="bienvenido">Welcome</string>
+    <string name="notifTitle" translatable="false">Traning</string>
+    <string name="notifDesc">Time to do some exercise!</string>
+    <string name="notif_disable">Reminder removed</string>
+    <string name="notif_enable">Please enable notifications</string>
+    <string name="notif_enabled_key" translatable="false">notif_enabled</string>
+    <string name="reminder_set">Reminder set</string>
 </resources>

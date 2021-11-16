@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ar.edu.itba.hci.android.*
+import ar.edu.itba.hci.android.NotificationsFragment
 import ar.edu.itba.hci.android.databinding.FragmentProfileBinding
 import ar.edu.itba.hci.android.ui.execution.ExecutionFragmentDirections
 import ar.edu.itba.hci.android.ui.login.LoginViewModel

@@ -38,4 +38,8 @@
     <string name="notificaciones">Notificaciones</string>
     <string name="horario_de_recordatorio_diario">Horario de recordatorio diario</string>
     <string name="bienvenido">Bienvenido</string>
+    <string name="notifDesc">Hora de ejercitarse!</string>
+    <string name="notif_disable">Recordatorio borrado</string>
+    <string name="notif_enable">Por favor, habilite las notificaciones</string>
+    <string name="reminder_set">Recordatorio creado</string>
 </resources>
