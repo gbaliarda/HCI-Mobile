@@ -121,7 +121,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/exerciseRecycler"
+            android:id="@+id/cicleRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -147,7 +147,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseRecycler" />
+            app:layout_constraintTop_toBottomOf="@+id/cicleRecycler" />
 
         <include
             android:id="@+id/controller"
@@ -159,7 +159,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/exerciseRecycler"
+            app:layout_constraintTop_toBottomOf="@+id/cicleRecycler"
             app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
