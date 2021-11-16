@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -39,8 +40,10 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         binding.controller.pause.setOnClickListener { pauseOrPlay() }
         binding.controller.play.setOnClickListener { pauseOrPlay() }
-    }
 
+        viewModel.isExercising.observe(this, Observer { if (it) { binding.included.visibility = View.VISIBLE
+        } })
+    }
 
 
     // Update action bar with the nav controller
