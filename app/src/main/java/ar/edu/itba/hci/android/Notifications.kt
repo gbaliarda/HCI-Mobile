@@ -31,7 +31,6 @@ class Notifications : Fragment() {
         val backButton = binding.back
 
         backButton.setOnClickListener {
-            // Get the possibles actions to translate through with this fragment
             val action = NotificationsDirections.actionNotificationsToNavigationProfile()
             findNavController().navigate(action)
         }

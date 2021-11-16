@@ -39,7 +39,6 @@ class ProfileFragment : Fragment() {
         val settingsButton = binding.settings
 
         settingsButton.setOnClickListener {
-            // Get the possibles actions to translate through with this fragment
             val action = ProfileFragmentDirections.actionNavigationProfileToNotifications()
             findNavController().navigate(action)
         }

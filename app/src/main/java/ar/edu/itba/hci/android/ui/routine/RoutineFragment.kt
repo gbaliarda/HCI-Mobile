@@ -49,6 +49,7 @@ class RoutineFragment : Fragment() {
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
             binding.exerciseCount.text = getString(R.string.routine_exercise_count, it.exercises.size)
         })
+
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
@@ -83,10 +84,9 @@ class RoutineFragment : Fragment() {
     }
 
     private fun startHandler() {
-
-        // Get the possibles actions to translate through with this fragment
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         findNavController().navigate(action)
+
     }
 
     private fun notImplemented() {
