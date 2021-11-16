@@ -1,7 +1,6 @@
 package ar.edu.itba.hci.android
 
 import android.app.*
-import android.app.Notification
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -9,28 +8,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import ar.edu.itba.hci.android.databinding.FragmentNotificationsBinding
 import java.util.*
 
-class NotificationsFragment : Fragment() {
+class NotificationsFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private var _binding: FragmentNotificationsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
 
         createNotificationChannel()
         binding.saveNotif.setOnClickListener { scheduleNotification() }
+        binding.switchNotif.setOnCheckedChangeListener(this)
+        binding.switchNotif.isChecked = sharedPref.getBoolean(getString(R.string.notif_enabled_key), false)
         return binding.root
+    }
+
+    override fun onCheckedChanged(p0: CompoundButton?, isChecked: Boolean) {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        if (!isChecked) {
+            val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(createPendingIntent())
+
+            with (sharedPref.edit()) {
+                putBoolean(getString(R.string.notif_enabled_key), false)
+                commit()
+            }
+
+            Toast.makeText(context, getString(R.string.notif_disable), Toast.LENGTH_SHORT).show()
+        } else {
+            with (sharedPref.edit()) {
+                putBoolean(getString(R.string.notif_enabled_key), true)
+                commit()
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,11 +64,10 @@ class NotificationsFragment : Fragment() {
         }
     }
 
-    private fun scheduleNotification()
-    {
+    private fun createPendingIntent(): PendingIntent? {
         val intent = Intent(context, Notification::class.java)
-        intent.putExtra(titleExtra, R.string.notifTitle)
-        intent.putExtra(messageExtra, R.string.notifDesc)
+        intent.putExtra(titleExtra, getString(R.string.notifTitle))
+        intent.putExtra(messageExtra, getString(R.string.notifDesc))
 
         val pendingIntent = PendingIntent.getBroadcast(
             context,
@@ -55,6 +75,15 @@ class NotificationsFragment : Fragment() {
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
+
+        return pendingIntent
+    }
+
+    private fun scheduleNotification() {
+        if (!binding.switchNotif.isChecked) {
+            Toast.makeText(context, getString(R.string.notif_enable), Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -73,27 +102,13 @@ class NotificationsFragment : Fragment() {
             AlarmManager.RTC_WAKEUP,
             calendar.timeInMillis,
             AlarmManager.INTERVAL_DAY,
-            pendingIntent
+            createPendingIntent()
         )
-        showAlert(calendar.timeInMillis)
+
+        Toast.makeText(context, getString(R.string.reminder_set), Toast.LENGTH_SHORT).show()
     }
 
-    private fun showAlert(time: Long)
-    {
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(context)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(context)
-
-        AlertDialog.Builder(context)
-            .setTitle("Notification Scheduled")
-            .setMessage(
-                "Notification set at: " + dateFormat.format(date) + " " + timeFormat.format(date))
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
-    }
-
-    private fun createNotificationChannel()
-    {
+    private fun createNotificationChannel() {
         val name = "Reminder Channel"
         val desc = "Exercise reminders"
         val importance = NotificationManager.IMPORTANCE_DEFAULT

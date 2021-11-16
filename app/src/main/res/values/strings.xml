@@ -53,4 +53,8 @@
     <string name="horario_de_recordatorio_diario">Daily reminder</string>
     <string name="notifTitle" translatable="false">Traning</string>
     <string name="notifDesc">Time to do some exercise!</string>
+    <string name="notif_disable">Reminder removed</string>
+    <string name="notif_enable">Please enable notifications</string>
+    <string name="notif_enabled_key" translatable="false">notif_enabled</string>
+    <string name="reminder_set">Reminder set</string>
 </resources>
