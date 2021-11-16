@@ -36,7 +36,7 @@
     <string name="share_title">Share routine link</string>
     <string name="dash" translatable="false">-</string>
     <string name="routine_start_button">Start</string>
-    <string name="routine_minutes">%d min</string>
+    <string name="routine_minutes">%d minutes</string>
     <string name="routine_exercise_count">%d exercises</string>
     <string name="exercise_seconds">%d seconds</string>
     <string name="exercise_repetitions">%d repetitions</string>

@@ -25,7 +25,7 @@
     <string name="like_button_description">Me gusta</string>
     <string name="share_title">Compartir link</string>
     <string name="routine_start_button">Iniciar</string>
-    <string name="routine_minutes">%d min</string>
+    <string name="routine_minutes">%d minutos</string>
     <string name="routine_exercise_count">%d ejercicios</string>
     <string name="exercise_seconds">%d segundos</string>
     <string name="exercise_repetitions">%d repeticiones</string>

@@ -9,10 +9,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
         app:cardCornerRadius="14dp"
-        app:cardElevation="4dp"
-        android:backgroundTint="?attr/colorBackgroundFloating">
+        app:cardElevation="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/colorOnSurface"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="Sentadillas" />
 
@@ -44,6 +44,7 @@
                     android:id="@+id/repetitions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="13sp"
                     tools:text="5 repeticiones x 3" />
             </LinearLayout>
 
@@ -58,8 +59,8 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
                 android:contentDescription="@string/exercise_card_info_button_description"
-                app:tint="?attr/colorPrimary"
                 app:srcCompat="@drawable/ic_info"
+                app:tint="?attr/colorPrimary"
                 tools:src="@drawable/ic_eye_open" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

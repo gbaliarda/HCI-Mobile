@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -14,7 +16,7 @@ import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
 import com.google.android.material.snackbar.Snackbar
 
-class RoutineFragment : Fragment() {
+class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private var _binding: FragmentRoutineBinding? = null
     private val binding get() = _binding!!
 
@@ -35,7 +37,8 @@ class RoutineFragment : Fragment() {
         binding.exerciseRecycler.adapter = exerciseAdapter
 
         binding.shareButton.setOnClickListener { shareHandler() }
-//        binding.ratingBar.setOnClickListener { reviewHandler() }
+        binding.ratingBar.onRatingBarChangeListener = this
+        binding.ratingBar.stepSize = 1F
         binding.startButton.setOnClickListener { startHandler() }
         binding.likeButton.setOnClickListener {
             if(model.liked.value != null) {
@@ -52,6 +55,10 @@ class RoutineFragment : Fragment() {
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
+    }
+
+    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+        Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
