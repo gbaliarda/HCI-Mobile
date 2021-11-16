@@ -63,7 +63,7 @@ class NotificationsFragment : Fragment(), CompoundButton.OnCheckedChangeListener
 
         backButton.setOnClickListener {
             // Get the possibles actions to translate through with this fragment
-            val action = NotificationsDirections.actionNotificationsToNavigationProfile()
+            val action = NotificationsFragmentDirections.actionNotificationsToNavigationProfile()
             findNavController().navigate(action)
         }
     }
