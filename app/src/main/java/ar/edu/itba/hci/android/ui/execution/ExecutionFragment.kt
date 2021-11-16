@@ -18,19 +18,28 @@ class ExecutionFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentExecutionBinding.inflate(inflater, container, false)
-
         return  binding.root;
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.backButtom.setOnClickListener{
-            // Get the possibles actions to translate through with this fragment
+        binding.pauseExerciseButton.setOnClickListener {
+            binding.pauseExerciseButton.visibility = View.INVISIBLE
+            binding.playButton.visibility = View.VISIBLE
+        }
+        binding.playButton.setOnClickListener{
+            binding.pauseExerciseButton.visibility = View.VISIBLE
+            binding.playButton.visibility = View.INVISIBLE
+        }
+
+        binding.backToRoutineButton.setOnClickListener{
             val action = ExecutionFragmentDirections.actionExecutionFragmentToNavigationRoutine()
             findNavController().navigate(action)
         }
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

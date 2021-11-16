@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment() {
@@ -20,6 +23,9 @@ class RoutineFragment : Fragment() {
 
     private val model: RoutineViewModel by viewModels()
     private lateinit var exerciseAdapter:ExerciseAdapter
+
+    private val mainViewModel : MainViewModel by activityViewModels()
+    private val exViewModel : ExecutionViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRoutineBinding.inflate(inflater, container, false)
@@ -49,6 +55,7 @@ class RoutineFragment : Fragment() {
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
             binding.exerciseCount.text = getString(R.string.routine_exercise_count, it.exercises.size)
         })
+
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
@@ -83,8 +90,7 @@ class RoutineFragment : Fragment() {
     }
 
     private fun startHandler() {
-
-        // Get the possibles actions to translate through with this fragment
+        mainViewModel.isExercising = true
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         findNavController().navigate(action)
     }

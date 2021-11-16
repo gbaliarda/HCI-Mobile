@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,6 +59,9 @@ class LoginFragment : Fragment() {
         val passwordEditText = binding.password
         val loginButton = binding.login
         val loadingProgressBar = binding.loading
+
+        val eye_open = binding.eyeOpen
+        val eye_close = binding.eyeClose
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
@@ -119,6 +124,12 @@ class LoginFragment : Fragment() {
                 passwordEditText.text.toString()
             )
         }
+
+        eye_close.setOnClickListener{ showPassword() }
+        eye_open.setOnClickListener { hidePassword() }
+
+
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
@@ -135,6 +146,20 @@ class LoginFragment : Fragment() {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
+
+    private fun showPassword(){
+        binding.eyeClose.visibility = View.INVISIBLE
+        binding.password.transformationMethod = HideReturnsTransformationMethod.getInstance()
+        binding.eyeOpen.visibility = View.VISIBLE
+    }
+
+    private fun hidePassword(){
+        binding.eyeOpen.visibility = View.INVISIBLE
+        binding.password.transformationMethod = PasswordTransformationMethod.getInstance()
+        binding.eyeClose.visibility = View.VISIBLE
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
