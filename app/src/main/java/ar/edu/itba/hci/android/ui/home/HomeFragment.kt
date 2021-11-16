@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
 import ar.edu.itba.hci.android.ui.FilterFragment
+import ar.edu.itba.hci.android.ui.SharedViewModel
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +31,9 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapter:RoutineAdapter
 
+    // Scope the ViewModel to activity
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +48,13 @@ class HomeFragment : Fragment() {
             bottomSheetFragment.show(parentFragmentManager, "BottomSheetDialog")
         }
 
-        binding.name.text = arguments?.getString("message")
+        sharedViewModel.onlyFavorite.observe(viewLifecycleOwner, { fav ->
+            binding.name.text = fav.toString()
+        })
+
+        sharedViewModel.ordering.observe(viewLifecycleOwner, { order ->
+            binding.repetitions.text = order.toString()
+        })
 
         return binding.root
     }
