@@ -43,6 +43,8 @@ class HomeFragment : Fragment() {
             bottomSheetFragment.show(parentFragmentManager, "BottomSheetDialog")
         }
 
+        binding.name.text = arguments?.getString("message")
+
         return binding.root
     }
 

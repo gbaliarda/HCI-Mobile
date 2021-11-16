@@ -8,8 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
+import ar.edu.itba.hci.android.ui.home.HomeFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -34,6 +35,17 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp() ||  super.onSupportNavigateUp()
+    }
+
+    override fun passData(textInput: String) {
+        val bundle = Bundle()
+        bundle.putString("message", textInput)
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val homeFragment = HomeFragment()
+        homeFragment.arguments = bundle
+
+        transaction.replace(R.id.nav_host_fragment_container, homeFragment)
+        transaction.commit()
     }
 
 }
