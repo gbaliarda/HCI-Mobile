@@ -48,12 +48,6 @@
             android:buttonTint="@color/orange"
             android:text="Puntuación" />
 
-        <RadioButton
-            android:id="@+id/radioCateg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/orange"
-            android:text="Categoría" />
     </RadioGroup>
 
     <TextView

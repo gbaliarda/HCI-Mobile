@@ -36,7 +36,6 @@ class FilterFragment : BottomSheetDialogFragment(), RadioGroup.OnCheckedChangeLi
 
     override fun onCheckedChanged(p0: RadioGroup?, idRadio: Int) {
         when(idRadio) {
-            binding.radioCateg.id -> sharedViewModel.saveOrder(Ordering.CATEGORY)
             binding.radioDate.id -> sharedViewModel.saveOrder(Ordering.DATE)
             binding.radioDiff.id -> sharedViewModel.saveOrder(Ordering.DIFFICULTY)
             binding.radioScore.id -> sharedViewModel.saveOrder(Ordering.SCORE)

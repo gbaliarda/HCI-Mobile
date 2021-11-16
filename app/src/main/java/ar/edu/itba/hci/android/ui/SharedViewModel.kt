@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 enum class Ordering {
-    NONE, CATEGORY, DATE, SCORE, DIFFICULTY
+    NONE, DATE, SCORE, DIFFICULTY
 }
 
 class SharedViewModel : ViewModel() {
