@@ -14,6 +14,10 @@ import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
 import java.util.*
 
+import android.util.TypedValue
+import ar.edu.itba.hci.android.R
+
+
 class HomeFragment : Fragment() {
 
     private val app:MainApplication by lazy {
@@ -97,11 +101,22 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
+
+
+        //Get colorPrimary
+        val typedValue = TypedValue()
+        requireContext().theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        val colorPrimary = typedValue.data
+
+        binding.swipeRefresh?.setColorSchemeColors(colorPrimary)
+        binding.swipeRefresh?.isRefreshing = true
+        binding.swipeRefresh?.setOnRefreshListener {
+            model.refreshRoutines()
+        }
             
         model.routines.observe(viewLifecycleOwner, {
             adapter.routines = it.content
-            binding.spinner?.visibility = View.GONE
-            binding.content?.visibility = View.VISIBLE
+            binding.swipeRefresh?.isRefreshing = false
         })
     }
 
