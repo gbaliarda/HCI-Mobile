@@ -15,5 +15,6 @@ data class Routine(
 ) {
     data class Metadata(
         val duration:Int,
+        val favorite:Boolean?
     )
 }

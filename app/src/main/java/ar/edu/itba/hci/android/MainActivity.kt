@@ -17,6 +17,7 @@ import ar.edu.itba.hci.android.ui.home.HomeFragmentDirections
 import ar.edu.itba.hci.android.ui.routine.Routine
 import ar.edu.itba.hci.android.ui.routine.RoutineFragment
 import java.lang.NumberFormatException
+import ar.edu.itba.hci.android.ui.home.HomeFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
 class MainActivity : AppCompatActivity() {
