@@ -51,6 +51,7 @@ class RoutineRepository(app: MainApplication) :
         }
 
         return Routine(
+            apiRoutine.id,
             apiRoutine.name,
             apiRoutine.detail,
             apiRoutine.metadata.duration,

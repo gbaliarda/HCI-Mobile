@@ -98,8 +98,8 @@ class HomeFragment : Fragment() {
             }
         })
             
-        homeViewModel.routines.observe(viewLifecycleOwner, {
-            adapter.routines = it
+        model.routines.observe(viewLifecycleOwner, {
+            adapter.routines = it.content
             binding.spinner?.visibility = View.GONE
             binding.content?.visibility = View.VISIBLE
         })
