@@ -25,25 +25,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/search"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_search"
-        app:layout_constraintBottom_toBottomOf="@+id/myRoutines"
-        app:layout_constraintEnd_toStartOf="@+id/filterBtn"
-        app:layout_constraintTop_toTopOf="@+id/myRoutines"
-        app:tint="@color/black" />
-
-    <ImageView
         android:id="@+id/filterBtn"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/ic_filter"
-        app:layout_constraintBottom_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search"
+        app:layout_constraintTop_toTopOf="@+id/myRoutines"
         app:tint="@color/black" />
 
     <androidx.cardview.widget.CardView
@@ -130,12 +118,19 @@
             android:clipChildren="true"
             android:clipToPadding="false"
             android:foregroundGravity="center"
-            android:paddingStart="15dp"
-            android:paddingTop="15dp"
-            android:paddingEnd="15dp"
             tools:listitem="@layout/routine_card">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layoutDirection="rtl"
+        app:layout_constraintBottom_toBottomOf="@+id/filterBtn"
+        app:layout_constraintStart_toEndOf="@id/filterBtn"
+        app:layout_constraintTop_toTopOf="@+id/filterBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
