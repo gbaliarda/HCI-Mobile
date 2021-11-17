@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.EventLog
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
-        // p1 navcontroller p2 destination p3 arg
         navController.addOnDestinationChangedListener{ _, destination, _ ->
             if  (mainViewmodel.isExercising) {
                 if (destination.label != "fragment_execution") {
@@ -49,6 +50,10 @@ class MainActivity : AppCompatActivity() {
             else {
                 binding.miniPlayer.visibility = View.GONE
             }
+        }
+
+        binding.miniPlayer.setOnClickListener {
+            // TODO: open execution fragment
         }
     }
 
@@ -73,12 +78,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun pauseOrPlay() {
         if (!binding.controller.play.isVisible) {
-            binding.controller.pause.visibility = View.INVISIBLE
+            binding.controller.pause.visibility = View.GONE
             binding.controller.play.visibility = View.VISIBLE
         }
         else {
             binding.controller.pause.visibility = View.VISIBLE
-            binding.controller.play.visibility = View.INVISIBLE
+            binding.controller.play.visibility = View.GONE
         }
 
     }

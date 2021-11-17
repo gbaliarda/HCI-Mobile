@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:background="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,57 +42,50 @@
         app:tint="@color/white"
         tools:text="Serie 1" />
 
-    <ImageButton
-        android:id="@+id/next_exercise"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:background="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/play"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/play"
-        app:srcCompat="@drawable/ic_baseline_skip_next_24"
-        app:tint="@color/white"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/previous_exercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/play"
-        app:layout_constraintEnd_toStartOf="@+id/play"
-        app:layout_constraintTop_toTopOf="@+id/play"
-        app:srcCompat="@drawable/ic_baseline_skip_previous_24"
-        app:tint="@color/white"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/previous_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@drawable/ic_baseline_skip_previous_24"
+            app:tint="@color/white"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/next_exercise"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
-        app:srcCompat="@drawable/ic_baseline_play_arrow_24"
-        app:tint="@color/white"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <ImageButton
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@drawable/ic_baseline_pause_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/next_exercise"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/previous_exercise"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
-        app:srcCompat="@drawable/ic_baseline_pause_24"
-        app:tint="@color/white"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_baseline_play_arrow_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/next_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:srcCompat="@drawable/ic_baseline_skip_next_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

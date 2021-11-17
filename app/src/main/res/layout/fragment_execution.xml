@@ -46,7 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
-            android:background="@null"
             android:contentDescription="@string/back_button_description"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -79,15 +78,14 @@
             android:layout_width="48dp"
             android:layout_height="54dp"
             android:layout_marginEnd="234dp"
-            android:background="@null"
             android:contentDescription="refresh"
             android:scaleX="2"
             android:scaleY="2"
             android:src="@drawable/ic_baseline_refresh_24"
             app:layout_constraintBottom_toBottomOf="@+id/counter"
             app:layout_constraintEnd_toEndOf="@+id/counter"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/orange_light" />
+            app:tint="@color/orange_light"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/serieText"
@@ -126,7 +124,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:background="@null"
             android:contentDescription="next"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -135,15 +132,14 @@
             app:layout_constraintStart_toEndOf="@+id/pauseExerciseButton"
             app:layout_constraintTop_toTopOf="@+id/pauseExerciseButton"
             app:layout_constraintVertical_bias="0.571"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/orange" />
+            app:tint="@color/orange"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
             android:id="@+id/previousButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:background="@null"
             android:contentDescription="previous"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -153,8 +149,8 @@
             app:layout_constraintEnd_toStartOf="@+id/pauseExerciseButton"
             app:layout_constraintTop_toTopOf="@+id/pauseExerciseButton"
             app:layout_constraintVertical_bias="0.571"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tint="@color/orange" />
+            app:tint="@color/orange"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/playButton"
