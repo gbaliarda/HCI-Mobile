@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
+import ar.edu.itba.hci.android.ui.home.HomeFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
 class MainActivity : AppCompatActivity() {

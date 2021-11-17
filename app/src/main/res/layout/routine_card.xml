@@ -2,15 +2,16 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="170dp"
-    android:layout_marginBottom="30dp"
+    android:layout_width="wrap_content"
+    android:layout_height="190dp"
+    android:clipToPadding="false"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="14dp"
-    app:cardElevation="8dp">
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="270dp"
         android:layout_height="match_parent"
         android:gravity="center">
 
@@ -55,7 +56,7 @@
                     style="@style/PrimaryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="30dp"
                     android:text="Iniciar"
                     android:textSize="16sp" />
 
@@ -80,6 +81,7 @@
                     android:layout_marginBottom="0dp"
                     android:backgroundTint="@color/white"
                     android:contentDescription="@string/routine_card_fav_button_description"
+                    android:minWidth="48dp"
                     android:minHeight="48dp"
                     android:scaleType="center"
                     app:srcCompat="@drawable/ic_favorite_border"
