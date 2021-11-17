@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             if (pathArgs[0] == "id")
                 try {
                     getId = pathArgs[1].toInt()
-                    val action = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine().setRoutineId(getId)
+                    val action = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(getId)
                     navController.navigate(action)
                 } catch(ex:Exception) {
                     Toast.makeText(this, "Error loading routine", Toast.LENGTH_LONG).show()

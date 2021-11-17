@@ -25,10 +25,9 @@ import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private val args: RoutineFragmentArgs by navArgs()
+
     private var _binding: FragmentRoutineBinding? = null
     private val binding get() = _binding!!
-    private val args: RoutineFragmentArgs by navArgs<RoutineFragmentArgs>()
-
 
     private val app: MainApplication by lazy { requireActivity().application as MainApplication }
     private val model: RoutineViewModel by viewModels {
@@ -66,8 +65,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             }
         }
 
-        Toast.makeText(context, args.routineId.toString(), Toast.LENGTH_LONG).show()
-
         model.routine.observe(viewLifecycleOwner, {
             exerciseAdapter.cycles = it.cycles
             binding.routineName.text = it.name
@@ -76,7 +73,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.difficulty.text = it.difficulty
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
-            Snackbar.make(binding.content, "Esto es un snackbar", Snackbar.LENGTH_SHORT).show()
         })
 
         model.liked.observe(viewLifecycleOwner, {
