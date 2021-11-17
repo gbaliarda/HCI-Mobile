@@ -34,8 +34,7 @@ class ExecutionFragment : Fragment() {
         }
 
         binding.backToRoutineButton.setOnClickListener{
-            val action = ExecutionFragmentDirections.actionExecutionFragmentToNavigationRoutine()
-            findNavController().navigate(action)
+            findNavController().popBackStack()
         }
     }
 

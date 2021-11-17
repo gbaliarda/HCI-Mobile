@@ -46,8 +46,6 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel.getUserInfo()
-
         val settingsButton = binding.settings
         val loadingProgressBar = binding.loading2
         val userFirstName = binding.userProfileName
@@ -72,22 +70,22 @@ class ProfileFragment : Fragment() {
                 startActivity(intent)
             })
 
-        profileViewModel.profileResult.observe(viewLifecycleOwner,
-            Observer { profileResult ->
-                profileResult ?: return@Observer
-                loadingProgressBar.visibility = View.GONE
-                userFirstName.text = profileResult.name
-                userEmail.text = profileResult.email
-                when(profileResult.avatarUrl) {
-                    "F1" -> userImg.setImageResource(R.drawable.ic_profile_f1)
-                    "F2" -> userImg.setImageResource(R.drawable.ic_profile_f2)
-                    "F3" -> userImg.setImageResource(R.drawable.ic_profile_f3)
-                    "F4" -> userImg.setImageResource(R.drawable.ic_profile_f4)
-                    "F5" -> userImg.setImageResource(R.drawable.ic_profile_f5)
-                    "M1" -> userImg.setImageResource(R.drawable.ic_profile_m1)
-                    "M2" -> userImg.setImageResource(R.drawable.ic_profile_m2)
-                    "M3" -> userImg.setImageResource(R.drawable.ic_profile_m3)
-                    else -> userImg.setImageResource(R.drawable.ic_profile_default)
+        profileViewModel.profileResult.observe(viewLifecycleOwner,{
+                if(it.name != null) {
+                    loadingProgressBar.visibility = View.GONE
+                    userFirstName.text = it.name
+                    userEmail.text = it.email
+                    when(it.avatarUrl?.substring(0,2)) {
+                        "F1" -> userImg.setImageResource(R.drawable.ic_profile_f1)
+                        "F2" -> userImg.setImageResource(R.drawable.ic_profile_f2)
+                        "F3" -> userImg.setImageResource(R.drawable.ic_profile_f3)
+                        "F4" -> userImg.setImageResource(R.drawable.ic_profile_f4)
+                        "F5" -> userImg.setImageResource(R.drawable.ic_profile_f5)
+                        "M1" -> userImg.setImageResource(R.drawable.ic_profile_m1)
+                        "M2" -> userImg.setImageResource(R.drawable.ic_profile_m2)
+                        "M3" -> userImg.setImageResource(R.drawable.ic_profile_m3)
+                        else -> userImg.setImageResource(R.drawable.ic_profile_default)
+                    }
                 }
             })
     }

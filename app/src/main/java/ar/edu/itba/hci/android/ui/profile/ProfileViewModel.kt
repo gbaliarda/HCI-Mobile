@@ -14,23 +14,21 @@ class ProfileViewModel(
 
     private val userRepository = application.userRepository
 
-    private val _profileResult = MutableLiveData<ProfileResult>()
-    val profileResult: LiveData<ProfileResult> = _profileResult
-
-    private val _logoutResult = MutableLiveData<LogoutResult>()
-    val logoutResult: LiveData<LogoutResult> = _logoutResult
-
-    fun getUserInfo() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val currUser = userRepository.getCurrentUser()
-
-                _profileResult.postValue(ProfileResult(name = currUser.firstName!!, email = currUser.email, avatarUrl = currUser.avatarUrl!!.substring(0,2)))
-            } catch(ex:Exception) {
-                _profileResult.postValue(ProfileResult(name = null, email = null))
+    val profileResult: LiveData<ProfileResult> by lazy {
+        MutableLiveData<ProfileResult>().also {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    val currUser = userRepository.getCurrentUser()
+                    it.postValue(ProfileResult(name = currUser.firstName, email = currUser.email, avatarUrl = currUser.avatarUrl))
+                } catch(ex:Exception) {
+                    it.postValue(ProfileResult(name = null, email = null))
+                }
             }
         }
     }
+
+    private val _logoutResult = MutableLiveData<LogoutResult>()
+    val logoutResult: LiveData<LogoutResult> = _logoutResult
 
     fun logout() {
         viewModelScope.launch(Dispatchers.IO) {
