@@ -1,5 +1,6 @@
-package ar.edu.itba.hci.android.api
+package ar.edu.itba.hci.android.api.service
 
+import ar.edu.itba.hci.android.api.ApiResponse
 import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Sport
 import retrofit2.http.*

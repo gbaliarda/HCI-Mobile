@@ -4,7 +4,6 @@ import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.Api
 import ar.edu.itba.hci.android.api.ApiResponse
 import ar.edu.itba.hci.android.api.NetworkResponse
-import ar.edu.itba.hci.android.api.UserService
 
 abstract class BaseRepository<T>(application: MainApplication, service:Class<T>) {
     protected val apiService:T = Api.createService(application, service)
