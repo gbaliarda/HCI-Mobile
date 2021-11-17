@@ -8,5 +8,5 @@ data class Routine(
     val difficulty:String,
     val cycles:List<Cycle>
 ) {
-    val shareLink = "https://traning.com/rutina/${id}"
+    val shareLink = "http://traningapp.com/routine?id=${id}"
 }

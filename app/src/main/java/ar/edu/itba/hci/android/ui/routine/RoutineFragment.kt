@@ -73,7 +73,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.difficulty.text = it.difficulty
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
-            Snackbar.make(binding.content, "Esto es un snackbar", Snackbar.LENGTH_SHORT).show()
         })
 
         model.liked.observe(viewLifecycleOwner, {

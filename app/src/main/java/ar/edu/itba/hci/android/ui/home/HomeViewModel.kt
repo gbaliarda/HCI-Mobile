@@ -27,7 +27,7 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
                     it.postValue(userRepository.getCurrentUserRoutines())
                 }
                 catch (ex:Exception) {
-                    Toast.makeText(app, "Error al cargar rutinas", Toast.LENGTH_SHORT)
+                    println("Error al cargar rutinas ${ex.stackTrace}")
                 }
             }
         }

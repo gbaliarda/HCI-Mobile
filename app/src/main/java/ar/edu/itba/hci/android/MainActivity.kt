@@ -1,6 +1,9 @@
 package ar.edu.itba.hci.android
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import android.view.View
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -9,6 +12,11 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionFragmentDirections
+import ar.edu.itba.hci.android.ui.home.HomeFragmentDirections
+import ar.edu.itba.hci.android.ui.routine.Routine
+import ar.edu.itba.hci.android.ui.routine.RoutineFragment
+import java.lang.NumberFormatException
 import ar.edu.itba.hci.android.ui.home.HomeFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
@@ -33,6 +41,23 @@ class MainActivity : AppCompatActivity() {
 //        val appBarConfiguration = AppBarConfiguration(setOf(
 //                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navView.setupWithNavController(navController)
+
+        val uri:Uri? = intent.data
+        if (uri != null) {
+            val path:String = uri.toString()
+            val pathArgs = path.split("?")[1].split("=")
+            var getId:Int? = -1
+            if (pathArgs[0] == "id")
+                try {
+                    getId = pathArgs[1].toInt()
+                    val action = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(getId)
+                    navController.navigate(action)
+                } catch(ex:Exception) {
+                    Toast.makeText(this, "Error loading routine", Toast.LENGTH_LONG).show()
+                }
+        }
 
         miniPlayer.setOnClickListener {
             navController.navigate(R.id.executionFragment)
@@ -64,7 +89,6 @@ class MainActivity : AppCompatActivity() {
             binding.miniPlayer.visibility = View.GONE
             mainViewmodel.isExercising = false
         }
-
     }
 
     // Update action bar with the nav controller
@@ -84,5 +108,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
 }
