@@ -47,4 +47,7 @@
     <string name="notif_enable">Por favor, habilite las notificaciones</string>
     <string name="reminder_set">Recordatorio creado</string>
     <string name="play">Play</string>
+    <string name="more_information">más información</string>
+    <!-- Strings related to Executions -->
+    <string name="formatted_time">%02d:%02d</string>
 </resources>

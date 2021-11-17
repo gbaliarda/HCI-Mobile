@@ -60,4 +60,7 @@
     <string name="notif_enabled_key" translatable="false">notif_enabled</string>
     <string name="reminder_set">Reminder set</string>
     <string name="play">Play</string>
+    <string name="more_information">more_Information</string>
+    <!-- Strings related to Executions -->
+    <string name="formatted_time">%02d:%02d</string>
 </resources>
