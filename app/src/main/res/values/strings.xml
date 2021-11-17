@@ -50,4 +50,8 @@
     <string name="notificaciones">Notifications</string>
     <string name="horario_de_recordatorio_diario">Daily reminder</string>
     <string name="bienvenido">Welcome</string>
+    <string name="cycle_header_repetitions">%d repetitions</string>
+    <string name="routine_fetch_error">Error fetching routine</string>
+    <string name="exercise_minutes">%d minutes</string>
+    <string name="fragment_routine_description_label">Description</string>
 </resources>

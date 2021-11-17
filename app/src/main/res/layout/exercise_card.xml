@@ -35,6 +35,8 @@
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textColor="?attr/colorOnSurface"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -44,6 +46,8 @@
                     android:id="@+id/repetitions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:textSize="13sp"
                     tools:text="5 repeticiones x 3" />
             </LinearLayout>

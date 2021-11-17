@@ -6,9 +6,30 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.routine.RoutineFragment">
+        tools:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:context=".ui.routine.RoutineFragment"
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -121,46 +142,22 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cicleRecycler"
+            android:id="@+id/exerciseRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="32dp"
+            android:paddingTop="4dp"
             android:paddingEnd="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/startButton"
+            android:paddingBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-            tools:listitem="@layout/cicle_layout" />
-
-        <Button
-            android:id="@+id/startButton"
-            style="@style/AccentColorRoundedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/routine_start_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cicleRecycler" />
-
-        <include
-            android:id="@+id/controller"
-            layout="@layout/mini_exercise_view"
-            android:layout_width="411dp"
-            android:layout_height="57dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cicleRecycler"
-            app:layout_constraintVertical_bias="1.0" />
+            tools:listitem="@layout/exercise_card" />
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -173,23 +170,33 @@
             app:layout_constraintTop_toBottomOf="@+id/ratingBar">
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Descripción"
+                android:text="@string/fragment_routine_description_label"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Rutina ideal para ejercitar las piernas rapidamente en el patio de casa"
+                tools:text="Rutina ideal para ejercitar las piernas rapidamente en el patio de casa"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/startButton"
+        style="@style/AccentColorRoundedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="8dp"
+        android:text="@string/routine_start_button" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
