@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Notifications">
+    tools:context=".NotificationsFragment">
 
     <ImageView
         android:id="@+id/back"
@@ -76,13 +76,14 @@
         app:layout_constraintTop_toBottomOf="@+id/timePicker" />
 
     <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchNotif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:thumb="@drawable/thumb"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6"
-        android:thumb="@drawable/thumb"
-        app:track="@drawable/track"/>
+        app:track="@drawable/track" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

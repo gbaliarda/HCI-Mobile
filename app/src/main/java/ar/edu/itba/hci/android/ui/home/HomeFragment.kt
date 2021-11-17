@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = RoutineAdapter(requireContext())
+        adapter = RoutineAdapter(this)
 
         //TODO: Recyclerview horizontal
 
@@ -96,6 +96,12 @@ class HomeFragment : Fragment() {
                 sortAndFilter(newText)
                 return true
             }
+        })
+            
+        homeViewModel.routines.observe(viewLifecycleOwner, {
+            adapter.routines = it
+            binding.spinner?.visibility = View.GONE
+            binding.content?.visibility = View.VISIBLE
         })
     }
 

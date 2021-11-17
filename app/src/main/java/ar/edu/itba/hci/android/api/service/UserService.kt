@@ -1,5 +1,7 @@
-package ar.edu.itba.hci.android.api
+package ar.edu.itba.hci.android.api.service
 
+import ar.edu.itba.hci.android.api.ApiResponse
+import ar.edu.itba.hci.android.api.Review
 import ar.edu.itba.hci.android.api.model.*
 import retrofit2.http.*
 

@@ -69,8 +69,8 @@
                     android:minWidth="48dp"
                     android:minHeight="48dp"
                     android:scaleType="center"
-                    android:tint="@color/orange"
-                    app:srcCompat="@drawable/ic_share" />
+                    app:srcCompat="@drawable/ic_share"
+                    app:tint="@color/orange" />
 
                 <ImageButton
                     android:id="@+id/favorite"
@@ -84,10 +84,10 @@
                     android:minWidth="48dp"
                     android:minHeight="48dp"
                     android:scaleType="center"
-                    android:tint="@color/orange_light"
                     app:srcCompat="@drawable/ic_favorite_border"
                     tools:ignore="ImageContrastCheck"
-                    tools:src="@drawable/ic_eye_open" />
+                    tools:src="@drawable/ic_eye_open"
+                    app:tint="@color/orange_light" />
 
             </LinearLayout>
         </LinearLayout>

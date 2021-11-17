@@ -1,8 +1,7 @@
 package ar.edu.itba.hci.android.repository
 
 import ar.edu.itba.hci.android.MainApplication
-import ar.edu.itba.hci.android.api.Api
-import ar.edu.itba.hci.android.api.UserService
+import ar.edu.itba.hci.android.api.service.UserService
 import ar.edu.itba.hci.android.api.model.Credentials
 
 class UserRepository(application:MainApplication)

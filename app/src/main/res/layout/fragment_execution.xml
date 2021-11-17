@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/info"
+            android:id="@+id/exerciseInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -41,12 +41,11 @@
 
 
         <ImageButton
-            android:id="@+id/backButtom"
+            android:id="@+id/backToRoutineButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
-            android:background="@null"
             android:contentDescription="@string/back_button_description"
             android:minWidth="48dp"
             android:minHeight="48dp"
@@ -79,14 +78,13 @@
             android:layout_width="48dp"
             android:layout_height="54dp"
             android:layout_marginEnd="234dp"
-            android:background="@null"
             android:contentDescription="refresh"
             android:scaleX="2"
             android:scaleY="2"
             android:src="@drawable/ic_baseline_refresh_24"
-            android:tint="@color/orange_light"
             app:layout_constraintBottom_toBottomOf="@+id/counter"
             app:layout_constraintEnd_toEndOf="@+id/counter"
+            app:tint="@color/orange_light"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
@@ -105,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@+id/exercise_Name" />
 
         <Button
-            android:id="@+id/startRoutineButton"
+            android:id="@+id/pauseExerciseButton"
             android:layout_width="189dp"
             android:layout_height="62dp"
             android:layout_marginTop="30dp"
@@ -115,6 +113,7 @@
             android:textAllCaps="false"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="visible"
             app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -125,35 +124,50 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:background="@null"
             android:contentDescription="next"
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:src="@drawable/ic_next"
-            android:tint="@color/orange"
-            app:layout_constraintBottom_toBottomOf="@+id/startRoutineButton"
-            app:layout_constraintStart_toEndOf="@+id/startRoutineButton"
-            app:layout_constraintTop_toTopOf="@+id/startRoutineButton"
+            app:layout_constraintBottom_toBottomOf="@+id/pauseExerciseButton"
+            app:layout_constraintStart_toEndOf="@+id/pauseExerciseButton"
+            app:layout_constraintTop_toTopOf="@+id/pauseExerciseButton"
             app:layout_constraintVertical_bias="0.571"
+            app:tint="@color/orange"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/previousButtom"
+            android:id="@+id/previousButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:background="@null"
             android:contentDescription="previous"
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:rotation="180"
             android:src="@drawable/ic_next"
-            android:tint="@color/orange"
-            app:layout_constraintBottom_toBottomOf="@+id/startRoutineButton"
-            app:layout_constraintEnd_toStartOf="@+id/startRoutineButton"
-            app:layout_constraintTop_toTopOf="@+id/startRoutineButton"
+            app:layout_constraintBottom_toBottomOf="@+id/pauseExerciseButton"
+            app:layout_constraintEnd_toStartOf="@+id/pauseExerciseButton"
+            app:layout_constraintTop_toTopOf="@+id/pauseExerciseButton"
             app:layout_constraintVertical_bias="0.571"
+            app:tint="@color/orange"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="189dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/play"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/counter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

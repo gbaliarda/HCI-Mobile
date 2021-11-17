@@ -1,18 +1,16 @@
 package ar.edu.itba.hci.android.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
-import ar.edu.itba.hci.android.databinding.ExerciseCardLayoutBinding
 import ar.edu.itba.hci.android.databinding.RoutineCardBinding
-import com.google.android.material.snackbar.Snackbar
 
-class RoutineAdapter(private val context:Context)
+class RoutineAdapter(private val fragment:Fragment)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
 
     var routines:List<Routine> = listOf()
@@ -36,6 +34,12 @@ class RoutineAdapter(private val context:Context)
         binding.startRoutineButton.setOnClickListener { start(item) }
         binding.share.setOnClickListener { share(item) }
         binding.favorite.setOnClickListener { favorite(item) }
+        binding.root.setOnClickListener{ details(item) }
+    }
+
+    fun details(routine:Routine) {
+        val dir = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(routine.id)
+        fragment.findNavController().navigate(dir)
     }
 
     fun start(routine:Routine) {

@@ -3,87 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="60dp"
     android:background="@color/orange_light">
 
     <ImageButton
-        android:id="@+id/cancel_buttom"
+        android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:background="@null"
-        android:tint="@color/white"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Exercise_name"
-        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
         app:srcCompat="@drawable/ic_baseline_close_24"
+        app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/Exercise_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="152dp"
-        android:text="TextView"
+        android:layout_width="94dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="12dp"
+        android:text="Soga"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/previous_exercise"
+        app:layout_constraintStart_toEndOf="@+id/cancel_button"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Soga" />
 
     <TextView
         android:id="@+id/serie_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
+        android:layout_width="44dp"
+        android:layout_height="16dp"
+        android:text="Serie 1"
         android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/previous_exercise"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toEndOf="@+id/cancel_buttom"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/Exercise_name"
         app:layout_constraintTop_toBottomOf="@+id/Exercise_name"
+        app:tint="@color/white"
         tools:text="Serie 1" />
 
-    <ImageButton
-        android:id="@+id/next_exercise"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:background="@null"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_skip_next_24"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/previous_exercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/play"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
-        app:srcCompat="@drawable/ic_baseline_skip_previous_24"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/previous_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@drawable/ic_baseline_skip_previous_24"
+            app:tint="@color/white"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/next_exercise"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
-        app:srcCompat="@drawable/ic_baseline_play_arrow_24"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        <ImageButton
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@drawable/ic_baseline_pause_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_baseline_play_arrow_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/next_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:srcCompat="@drawable/ic_baseline_skip_next_24"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

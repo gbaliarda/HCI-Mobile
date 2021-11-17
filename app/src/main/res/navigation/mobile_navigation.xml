@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="ar.edu.itba.hci.android.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_routine"
+            app:destination="@id/navigation_routine" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_routine"
@@ -19,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_routine_to_execution1Fragment"
             app:destination="@id/executionFragment" />
+        <argument
+            android:name="routine_id"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -41,9 +48,9 @@
     </fragment>
     <fragment
         android:id="@+id/notifications"
-        android:name="ar.edu.itba.hci.android.Notifications"
+        android:name="ar.edu.itba.hci.android.NotificationsFragment"
         android:label="fragment_notifications"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_notifications">
         <action
             android:id="@+id/action_notifications_to_navigation_profile"
             app:destination="@id/navigation_profile" />
