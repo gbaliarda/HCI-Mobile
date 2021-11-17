@@ -1,33 +1,51 @@
 package ar.edu.itba.hci.android.ui.routine
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import ar.edu.itba.hci.android.MainApplication
+import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class RoutineFragment() : Fragment() {
+class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
+    private val args: RoutineFragmentArgs by navArgs()
     private var _binding: FragmentRoutineBinding? = null
     private val binding get() = _binding!!
     private val args: RoutineFragmentArgs by navArgs<RoutineFragmentArgs>()
 
 
-    private val model: RoutineViewModel by viewModels()
-    private lateinit var exerciseAdapter:ExerciseAdapter
+    private val app: MainApplication by lazy { requireActivity().application as MainApplication }
+    private val model: RoutineViewModel by viewModels {
+        RoutineViewModelFactory(args.routineId, app)
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    private lateinit var exerciseAdapter: ExerciseAdapter
+    private val mainViewModel : MainViewModel by activityViewModels()
+    private val exViewModel : ExecutionViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentRoutineBinding.inflate(inflater, container, false)
-        return binding.root;
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,10 +57,11 @@ class RoutineFragment() : Fragment() {
         binding.exerciseRecycler.adapter = exerciseAdapter
 
         binding.shareButton.setOnClickListener { shareHandler() }
-        binding.reviewButton.setOnClickListener { reviewHandler() }
+        binding.ratingBar.onRatingBarChangeListener = this
+        binding.ratingBar.stepSize = 1F
         binding.startButton.setOnClickListener { startHandler() }
         binding.likeButton.setOnClickListener {
-            if(model.liked.value != null) {
+            if (model.liked.value != null) {
                 model.liked.value = !model.liked.value!!
             }
         }
@@ -50,14 +69,23 @@ class RoutineFragment() : Fragment() {
         Toast.makeText(context, args.routineId.toString(), Toast.LENGTH_LONG).show()
 
         model.routine.observe(viewLifecycleOwner, {
-            exerciseAdapter.exercises = it.exercises
+            exerciseAdapter.cycles = it.cycles
             binding.routineName.text = it.name
+            binding.description.text = it.description
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
-            binding.exerciseCount.text = getString(R.string.routine_exercise_count, it.exercises.size)
+            binding.difficulty.text = it.difficulty
+            binding.spinner.visibility = View.GONE
+            binding.content.visibility = View.VISIBLE
+            Snackbar.make(binding.content, "Esto es un snackbar", Snackbar.LENGTH_SHORT).show()
         })
+
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
+    }
+
+    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
+        Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
@@ -65,9 +93,9 @@ class RoutineFragment() : Fragment() {
         _binding = null
     }
 
-    private fun likeHandler(liked:Boolean) {
+    private fun likeHandler(liked: Boolean) {
         binding.likeButton.setImageDrawable(
-            when(liked) {
+            when (liked) {
                 true -> ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite, null)
                 false -> ResourcesCompat.getDrawable(resources, R.drawable.ic_favorite_border, null)
             }
@@ -89,14 +117,13 @@ class RoutineFragment() : Fragment() {
     }
 
     private fun startHandler() {
-
-        // Get the possibles actions to translate through with this fragment
+        mainViewModel.isExercising = true
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         findNavController().navigate(action)
     }
 
     private fun notImplemented() {
-        Snackbar.make(binding.root,"Not Implemented", Snackbar.LENGTH_SHORT)
+        Snackbar.make(binding.root, "Not Implemented", Snackbar.LENGTH_SHORT)
             .show()
     }
 }
