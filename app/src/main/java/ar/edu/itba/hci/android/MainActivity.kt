@@ -1,19 +1,14 @@
 package ar.edu.itba.hci.android
 
 import android.os.Bundle
-import android.util.EventLog
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
-import ar.edu.itba.hci.android.ui.execution.ExecutionFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -55,10 +50,6 @@ class MainActivity : AppCompatActivity() {
             else {
                 binding.miniPlayer.visibility = View.GONE
             }
-        }
-
-        binding.miniPlayer.setOnClickListener {
-            // TODO: open execution fragment
         }
     }
 
