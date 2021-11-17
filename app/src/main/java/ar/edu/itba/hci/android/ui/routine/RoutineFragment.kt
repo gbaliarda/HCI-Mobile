@@ -10,14 +10,17 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
+import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
@@ -32,6 +35,8 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     }
 
     private lateinit var exerciseAdapter: ExerciseAdapter
+    private val mainViewModel : MainViewModel by activityViewModels()
+    private val exViewModel : ExecutionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,6 +75,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.content.visibility = View.VISIBLE
             Snackbar.make(binding.content, "Esto es un snackbar", Snackbar.LENGTH_SHORT).show()
         })
+
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
@@ -108,7 +114,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     }
 
     private fun startHandler() {
-        // Get the possibles actions to translate through with this fragment
+        mainViewModel.isExercising = true
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         findNavController().navigate(action)
     }

@@ -42,4 +42,9 @@
     <string name="routine_fetch_error">Error al descargar rutina</string>
     <string name="exercise_minutes">%d minutos</string>
     <string name="fragment_routine_description_label">Descripción</string>
+    <string name="notifDesc">Hora de ejercitarse!</string>
+    <string name="notif_disable">Recordatorio borrado</string>
+    <string name="notif_enable">Por favor, habilite las notificaciones</string>
+    <string name="reminder_set">Recordatorio creado</string>
+    <string name="play">Play</string>
 </resources>

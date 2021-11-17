@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/myProfile"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="39dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
@@ -45,7 +45,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:contentDescription="@string/profileimage"
-            android:src="@drawable/ic_profile_img"
+            android:src="@drawable/ic_profile_default"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -67,28 +67,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileImg" />
 
-        <ImageView
-            android:id="@+id/editProfilePencil"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="50dp"
-            android:contentDescription="@string/edit_profile_icon"
-            android:src="@drawable/ic_edit_pencil"
-            app:layout_constraintBottom_toBottomOf="@+id/titleProfile"
-            app:layout_constraintStart_toEndOf="@+id/titleProfile"
-            app:layout_constraintTop_toTopOf="@+id/titleProfile" />
-
         <TextView
             android:id="@+id/userProfileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/bruno_peralta"
+            android:text=""
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/nameProfile"
             app:layout_constraintTop_toTopOf="@+id/nameProfile" />
+
+        <ProgressBar
+            android:id="@+id/loading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="64dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.181"
+            app:layout_constraintStart_toEndOf="@+id/nameProfile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.643" />
 
         <TextView
             android:id="@+id/nameProfile"
@@ -122,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat"
-            android:text="@string/bperalta96_gmail_com"
+            android:text=""
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintStart_toEndOf="@+id/nameProfile3"
