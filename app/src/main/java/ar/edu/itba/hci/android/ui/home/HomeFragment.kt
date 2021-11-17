@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
-import ar.edu.itba.hci.android.ui.FilterFragment
-import ar.edu.itba.hci.android.ui.SharedViewModel
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -22,7 +20,7 @@ class HomeFragment : Fragment() {
         requireActivity().application as MainApplication
     }
 
-    private val homeViewModel: HomeViewModel by viewModels { HomeViewModelFactory(app) }
+    private val model: HomeViewModel by activityViewModels { HomeViewModelFactory(app) }
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -31,8 +29,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var adapter:RoutineAdapter
 
-    // Scope the ViewModel to activity
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var routines:List<Routine> = listOf()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,15 +46,32 @@ class HomeFragment : Fragment() {
             bottomSheetFragment.show(parentFragmentManager, "BottomSheetDialog")
         }
 
-        sharedViewModel.onlyFavorite.observe(viewLifecycleOwner, { fav ->
-            binding.name.text = fav.toString()
+        model.onlyFavorite.observe(viewLifecycleOwner, {
+            sortAndFilter(null)
         })
 
-        sharedViewModel.ordering.observe(viewLifecycleOwner, { order ->
-            binding.repetitions.text = order.toString()
+        model.ordering.observe(viewLifecycleOwner, {
+            sortAndFilter(null)
         })
 
         return binding.root
+    }
+
+    private fun sortAndFilter(search:String?) {
+        val fav = model.onlyFavorite.value
+        val order = model.ordering.value
+        adapter.routines = routines.filter { fav == null || !fav || it.metadata?.favorite == fav }
+            .sortedWith(
+                when(order) {
+                    Ordering.DATE -> compareBy { it.date }
+                    Ordering.DIFFICULTY -> compareBy { it.difficulty }
+                    Ordering.SCORE -> compareBy { it.score }
+                    else -> compareBy { it.date }
+                }
+            )
+        search?.let { text ->
+            adapter.routines = adapter.routines.filter { text.lowercase() in it.name.lowercase() }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,8 +84,18 @@ class HomeFragment : Fragment() {
         binding.recycler?.layoutManager = LinearLayoutManager(context)
         binding.recycler?.adapter = adapter
 
-        homeViewModel.routines.observe(viewLifecycleOwner, {
-            adapter.routines = it
+        model.routines.observe(viewLifecycleOwner, {
+            adapter.routines = it.content
+            routines = it.content
+        })
+
+        (binding.search as SearchView).setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?) = false
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                sortAndFilter(newText)
+                return true
+            }
         })
     }
 

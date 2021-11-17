@@ -123,7 +123,7 @@
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
         android:layout_width="130dp"
         android:layout_height="wrap_content"

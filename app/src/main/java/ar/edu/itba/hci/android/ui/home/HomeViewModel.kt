@@ -32,4 +32,17 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
             }
         }
     }
+
+    private var _ordering = MutableLiveData(Ordering.NONE)
+    val ordering: LiveData<Ordering> = _ordering
+    private var _onlyFavorite = MutableLiveData(false)
+    val onlyFavorite: LiveData<Boolean> = _onlyFavorite
+
+    fun saveOrder(newOrder: Ordering) {
+        _ordering.value = newOrder
+    }
+
+    fun toggleFavorite() {
+        _onlyFavorite.value = !_onlyFavorite.value!!
+    }
 }

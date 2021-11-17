@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 class RoutineAdapter(private val context:Context)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
 
-    var routines:PagedList<Routine>? = null
+    var routines:List<Routine> = listOf()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -29,7 +29,7 @@ class RoutineAdapter(private val context:Context)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.binding
-        val item = routines!!.content[position]
+        val item = routines[position]
 
         binding.name.text = item.name
         binding.description.text = item.difficulty
@@ -50,7 +50,7 @@ class RoutineAdapter(private val context:Context)
 
     }
 
-    override fun getItemCount() = if(routines == null) 0 else routines!!.content.size
+    override fun getItemCount() = routines.size
 
     class ViewHolder(val binding:RoutineCardBinding)
         : RecyclerView.ViewHolder(binding.root) {

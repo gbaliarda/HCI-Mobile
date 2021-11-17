@@ -1,4 +1,4 @@
-package ar.edu.itba.hci.android.ui
+package ar.edu.itba.hci.android.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
