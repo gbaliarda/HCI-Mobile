@@ -8,5 +8,11 @@ data class Exercise(
     val detail:String,
     val type:String,
     val duration:Int,
-    val date:Date
-)
+    val date:Date,
+    val metadata: Metadata
+) {
+    data class Metadata(
+        val dif:String,
+        val grupo:String
+    )
+}
