@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
                 when(order) {
                     Ordering.DATE -> compareBy { it.date }
                     Ordering.DIFFICULTY -> compareBy { it.difficulty }
-                    Ordering.SCORE -> compareBy { it.metadata.score }
+                    Ordering.SCORE -> compareByDescending { it.metadata.score }
                     else -> compareBy { it.date }
                 }
             )

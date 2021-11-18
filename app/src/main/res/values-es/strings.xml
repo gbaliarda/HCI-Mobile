@@ -47,6 +47,11 @@
     <string name="notif_enable">Por favor, habilite las notificaciones</string>
     <string name="reminder_set">Recordatorio creado</string>
     <string name="play">Play</string>
+    <string name="filterTitle">Ordenar Rutinas</string>
+    <string name="filterDate">Fecha de creación</string>
+    <string name="filterDifficulty">Dificultad</string>
+    <string name="filterScore">Puntuación</string>
+    <string name="filterFav">Mostrar solo favoritas</string>
     <string name="userNotOwner">Error: Usuario no es dueño de la rutina</string>
     <string name="userNotLogin">Error: Usuario no tiene una sesion activa</string>
     <string name="iniciar">Iniciar</string>

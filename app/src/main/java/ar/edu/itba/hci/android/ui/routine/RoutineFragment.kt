@@ -1,5 +1,6 @@
 package ar.edu.itba.hci.android.ui.routine
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private val args: RoutineFragmentArgs by navArgs()
@@ -42,6 +44,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -69,7 +72,14 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.routineName.text = it.name
             binding.description.text = it.description
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
-            binding.difficulty.text = it.difficulty
+            if (Locale.getDefault().displayLanguage == "español")
+                when(it.difficulty) {
+                    "rookie", "beginner" -> binding.difficulty.text = "Principiante"
+                    "intermediate" -> binding.difficulty.text = "Intermedia"
+                    "advanced", "expert" -> binding.difficulty.text = "Avanzada"
+                }
+            else
+                binding.difficulty.text = it.difficulty[0].uppercase() + it.difficulty.substring(1)
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
         })

@@ -62,6 +62,12 @@
     <string name="reminder_set">Reminder set</string>
     <string name="play">Play</string>
     <!-- Strings related to Errors -->
+    <string name="filterTitle">Sort Routines</string>
+    <string name="filterDate">Creation date</string>
+    <string name="filterDifficulty">Difficulty</string>
+    <string name="filterScore">Score</string>
+    <string name="filterFav">Show only favorites</string>
+    <!-- Strings related to Errors -->
     <string name="userNotOwner">Error: User is not owner</string>
     <string name="userNotLogin">Error: User is not logged in</string>
 </resources>

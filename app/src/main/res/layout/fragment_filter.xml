@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ordenar Rutinas"
+        android:text="@string/filterTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,21 +32,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/orange"
-            android:text="Fecha de creación" />
+            android:checked="true"
+            android:text="@string/filterDate" />
 
         <RadioButton
             android:id="@+id/radioDiff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/orange"
-            android:text="Dificultad" />
+            android:text="@string/filterDifficulty" />
 
         <RadioButton
             android:id="@+id/radioScore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="@color/orange"
-            android:text="Puntuación" />
+            android:text="@string/filterScore" />
 
     </RadioGroup>
 
@@ -56,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="17dp"
-        android:text="Mostrar solo favoritas"
+        android:text="@string/filterFav"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
@@ -73,6 +74,7 @@
         android:track="@drawable/track"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

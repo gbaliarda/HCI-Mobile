@@ -1,10 +1,14 @@
 package ar.edu.itba.hci.android.repository
 
+import android.app.Application
+import android.content.res.Resources
+import android.util.Log
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.service.RoutineService
 import ar.edu.itba.hci.android.ui.routine.Cycle
 import ar.edu.itba.hci.android.ui.routine.Exercise
 import ar.edu.itba.hci.android.ui.routine.Routine
+import java.util.*
 import ar.edu.itba.hci.android.api.model.Routine as RoutineModel
 import kotlin.math.round
 
