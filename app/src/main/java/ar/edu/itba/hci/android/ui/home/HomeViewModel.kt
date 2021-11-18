@@ -1,6 +1,5 @@
 package ar.edu.itba.hci.android.ui.home
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,10 @@ import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
+
+enum class Ordering {
+    NONE, DATE, SCORE, DIFFICULTY
+}
 
 class HomeViewModel(app: MainApplication) : ViewModel() {
 
