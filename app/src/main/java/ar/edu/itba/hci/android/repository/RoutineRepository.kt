@@ -38,7 +38,10 @@ class RoutineRepository(app: MainApplication) :
                 Exercise(
                     cycleEx.exercise.name,
                     repetitionType,
-                    repetitionValue
+                    repetitionValue,
+                    cycleEx.exercise.detail,
+                    cycleEx.exercise.metadata.grupo,
+                    cycleEx.exercise.metadata.dif
                 )
             }
 
