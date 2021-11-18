@@ -1,8 +1,10 @@
 package ar.edu.itba.hci.android
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.view.View
 import androidx.activity.viewModels
@@ -120,4 +122,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
