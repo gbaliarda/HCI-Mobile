@@ -47,4 +47,6 @@
     <string name="notif_enable">Por favor, habilite las notificaciones</string>
     <string name="reminder_set">Recordatorio creado</string>
     <string name="play">Play</string>
+    <string name="userNotOwner">Error: Usuario no es dueño de la rutina</string>
+    <string name="userNotLogin">Error: Usuario no tiene una sesion activa</string>
 </resources>

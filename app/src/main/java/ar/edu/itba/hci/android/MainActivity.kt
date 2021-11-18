@@ -19,6 +19,7 @@ import ar.edu.itba.hci.android.ui.routine.RoutineFragment
 import java.lang.NumberFormatException
 import ar.edu.itba.hci.android.ui.home.HomeFragment
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
         navView.setupWithNavController(navController)
+
+        if (AppPreferences(this).authToken == null) {
+            navController.navigate(R.id.login2)
+        }
 
         val uri:Uri? = intent.data
         if (uri != null) {
@@ -76,6 +81,13 @@ class MainActivity : AppCompatActivity() {
             else {
                 binding.miniPlayer.visibility = View.GONE
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (AppPreferences(this).authToken == null) {
+            findNavController(R.id.nav_host_fragment_activity_main).navigate(R.id.login2)
         }
     }
 

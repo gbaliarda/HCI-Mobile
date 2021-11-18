@@ -60,4 +60,7 @@
     <string name="notif_enabled_key" translatable="false">notif_enabled</string>
     <string name="reminder_set">Reminder set</string>
     <string name="play">Play</string>
+    <!-- Strings related to Errors -->
+    <string name="userNotOwner">Error: User is not owner</string>
+    <string name="userNotLogin">Error: User is not logged in</string>
 </resources>
