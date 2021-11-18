@@ -2,6 +2,7 @@ package ar.edu.itba.hci.android.ui.routine
 
 import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,9 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         binding.exerciseRecycler.layoutManager = LinearLayoutManager(context)
         binding.exerciseRecycler.adapter = exerciseAdapter
 
+        binding.backButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_home)
+        }
         binding.shareButton.setOnClickListener { shareHandler() }
         binding.ratingBar.onRatingBarChangeListener = this
         binding.ratingBar.stepSize = 1F
@@ -63,6 +67,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             if (model.liked.value != null) {
                 model.liked.value = !model.liked.value!!
             }
+            model.likeRoutine()
         }
 
         model.routine.observe(viewLifecycleOwner, {
@@ -78,10 +83,15 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
+
+        model.scoreValue.observe(viewLifecycleOwner, {
+            binding.ratingBar.rating = it.toFloat()
+        })
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
         Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
+        model.scoreRoutine(p1.toInt())
     }
 
     override fun onDestroyView() {

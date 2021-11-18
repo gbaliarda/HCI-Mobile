@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="190dp"
     android:clipToPadding="false"
-    app:cardBackgroundColor="@color/white"
+    app:cardBackgroundColor="#fff"
     app:cardCornerRadius="14dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -56,38 +56,12 @@
                     style="@style/PrimaryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
                     android:text="Iniciar"
-                    android:textSize="16sp" />
-
-                <ImageButton
-                    android:id="@+id/share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:backgroundTint="#FFFFFF"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_share"
-                    app:tint="@color/orange" />
-
-                <ImageButton
-                    android:id="@+id/favorite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:backgroundTint="@color/white"
-                    android:contentDescription="@string/routine_card_fav_button_description"
-                    android:minWidth="48dp"
-                    android:minHeight="48dp"
-                    android:scaleType="center"
-                    app:srcCompat="@drawable/ic_favorite_border"
-                    tools:ignore="ImageContrastCheck"
-                    tools:src="@drawable/ic_eye_open"
-                    app:tint="@color/orange_light" />
+                    android:textColor="@color/orange_light"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/orange_light"
+                    app:strokeWidth="2dp" />
 
             </LinearLayout>
         </LinearLayout>

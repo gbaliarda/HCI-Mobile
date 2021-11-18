@@ -60,12 +60,12 @@ class HomeFragment : Fragment() {
     private fun sortAndFilter(search:String?) {
         val fav = model.onlyFavorite.value
         val order = model.ordering.value
-        adapter.routines = routines.filter { fav == null || !fav || it.metadata?.favorite == fav }
+        adapter.routines = routines.filter { fav == null || !fav || it.metadata.favorite == fav }
             .sortedWith(
                 when(order) {
                     Ordering.DATE -> compareBy { it.date }
                     Ordering.DIFFICULTY -> compareBy { it.difficulty }
-                    Ordering.SCORE -> compareBy { it.score }
+                    Ordering.SCORE -> compareBy { it.metadata.score }
                     else -> compareBy { it.date }
                 }
             )

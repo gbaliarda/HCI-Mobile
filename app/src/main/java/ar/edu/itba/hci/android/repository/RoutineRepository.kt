@@ -1,10 +1,15 @@
 package ar.edu.itba.hci.android.repository
 
+import android.util.Log
 import ar.edu.itba.hci.android.MainApplication
+import ar.edu.itba.hci.android.api.model.Category
+import ar.edu.itba.hci.android.api.model.User
 import ar.edu.itba.hci.android.api.service.RoutineService
 import ar.edu.itba.hci.android.ui.routine.Cycle
 import ar.edu.itba.hci.android.ui.routine.Exercise
 import ar.edu.itba.hci.android.ui.routine.Routine
+import java.util.*
+import ar.edu.itba.hci.android.api.model.Routine as RoutineModel
 import kotlin.math.round
 
 class RoutineRepository(app: MainApplication) :
@@ -13,6 +18,11 @@ class RoutineRepository(app: MainApplication) :
     suspend fun getRoutine(routineID:Int) : Routine {
         val apiRoutine = unwrapResponse(apiService.getRoutine(routineID))
         val apiCycles = unwrapResponse(apiService.getRoutineCycles(routineID))
+        if(apiRoutine.metadata.score == null)
+            apiRoutine.metadata.score = 0
+
+        if(apiRoutine.metadata.favorite == null)
+            apiRoutine.metadata.favorite = false
 
         val cycles = apiCycles.content.sortedBy{ it.order }.map { cycle ->
             val apiExercises = unwrapResponse(apiService.getCycleExercises(cycle.id))
@@ -56,7 +66,27 @@ class RoutineRepository(app: MainApplication) :
             apiRoutine.detail,
             apiRoutine.metadata.duration,
             apiRoutine.difficulty,
-            cycles
+            cycles,
+            apiRoutine.date,
+            apiRoutine.user,
+            apiRoutine.isPublic,
+            apiRoutine.metadata
         )
+    }
+
+    suspend fun modifyRoutine(routineID: Int, routine: Routine) {
+        val routineAPI = RoutineModel(
+            id = routine.id,
+            name = routine.name,
+            detail = routine.description,
+            date = routine.date,
+            difficulty = routine.difficulty,
+            category = null,
+            user = routine.user,
+            isPublic = routine.isPublic,
+            metadata = routine.metadata
+        )
+
+        apiService.modifyRoutine(routineID, routineAPI)
     }
 }

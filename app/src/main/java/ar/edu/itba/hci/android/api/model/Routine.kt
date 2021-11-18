@@ -3,18 +3,19 @@ package ar.edu.itba.hci.android.api.model
 import java.util.*
 
 data class Routine(
-    val id:Int,
+    var id:Int,
     val name:String,
     val detail:String,
     val date: Date?,
-    val score:Int?,
     val difficulty:String,
     val category: Category?,
     val user: User,
-    val metadata:Metadata
+    val isPublic: Boolean,
+    val metadata:Metadata,
 ) {
     data class Metadata(
         val duration:Int,
-        val favorite:Boolean?
+        var favorite:Boolean?,
+        var score:Int?
     )
 }
