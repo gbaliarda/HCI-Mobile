@@ -88,8 +88,8 @@ class HomeFragment : Fragment() {
 
         //TODO: Recyclerview horizontal
 
-//        binding.recycler?.layoutManager = LinearLayoutManager(context)
-        binding.recycler?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+        binding.recycler?.layoutManager = LinearLayoutManager(context)
+//        binding.recycler?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
         binding.recycler?.adapter = adapter
 
         model.routines.observe(viewLifecycleOwner, {

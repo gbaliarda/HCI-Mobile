@@ -60,4 +60,5 @@
     <string name="notif_enabled_key" translatable="false">notif_enabled</string>
     <string name="reminder_set">Reminder set</string>
     <string name="play">Play</string>
+    <string name="iniciar">Start</string>
 </resources>

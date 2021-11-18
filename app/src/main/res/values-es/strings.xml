@@ -47,4 +47,5 @@
     <string name="notif_enable">Por favor, habilite las notificaciones</string>
     <string name="reminder_set">Recordatorio creado</string>
     <string name="play">Play</string>
+    <string name="iniciar">Iniciar</string>
 </resources>
