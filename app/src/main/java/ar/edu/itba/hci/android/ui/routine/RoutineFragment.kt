@@ -1,19 +1,15 @@
 package ar.edu.itba.hci.android.ui.routine
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
-import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +17,6 @@ import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
-import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
-import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private val args: RoutineFragmentArgs by navArgs()
@@ -37,7 +31,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private lateinit var exerciseAdapter: ExerciseAdapter
     private val mainViewModel : MainViewModel by activityViewModels()
-    private val exViewModel : ExecutionViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,7 +83,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-        Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
         model.scoreRoutine(p1.toInt())
     }
 
@@ -118,18 +110,10 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         }
     }
 
-    private fun reviewHandler() {
-        notImplemented()
-    }
-
     private fun startHandler() {
         mainViewModel.isExercising = true
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         findNavController().navigate(action)
     }
 
-    private fun notImplemented() {
-        Snackbar.make(binding.root, "Not Implemented", Snackbar.LENGTH_SHORT)
-            .show()
-    }
 }
