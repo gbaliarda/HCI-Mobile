@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 enum class Ordering {
-    NONE, DATE, SCORE, DIFFICULTY
+    NONE, DATE, SCORE, DIFFICULTY, DURATION
 }
 
 class HomeViewModel(app: MainApplication) : ViewModel() {

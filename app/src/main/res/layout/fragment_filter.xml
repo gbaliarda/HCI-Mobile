@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/filterTitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +48,13 @@
             android:layout_height="wrap_content"
             android:buttonTint="@color/orange"
             android:text="@string/filterScore" />
+
+        <RadioButton
+            android:id="@+id/radioDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/orange"
+            android:text="@string/duration" />
 
     </RadioGroup>
 

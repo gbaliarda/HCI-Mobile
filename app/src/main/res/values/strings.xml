@@ -70,4 +70,5 @@
     <!-- Strings related to Errors -->
     <string name="userNotOwner">Error: User is not owner</string>
     <string name="userNotLogin">Error: User is not logged in</string>
+    <string name="duration">Duration</string>
 </resources>
