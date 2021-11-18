@@ -1,8 +1,10 @@
 package ar.edu.itba.hci.android
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import android.view.View
 import androidx.activity.viewModels
@@ -84,8 +86,12 @@ class MainActivity : AppCompatActivity() {
         binding.controller.pause.setOnClickListener { pauseOrPlay() }
         binding.controller.play.setOnClickListener { pauseOrPlay() }
 
-
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
         binding.controller.cancelButton.setOnClickListener {
+            with (sharedPref.edit()) {
+                putInt("actualRoutine", -1)
+                apply()
+            }
             binding.miniPlayer.visibility = View.GONE
             mainViewmodel.isExercising = false
         }

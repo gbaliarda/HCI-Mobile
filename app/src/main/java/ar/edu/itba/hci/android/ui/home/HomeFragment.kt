@@ -1,5 +1,6 @@
 package ar.edu.itba.hci.android.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
+import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
 import java.util.*
@@ -102,6 +105,30 @@ class HomeFragment : Fragment() {
             adapter.routines = it.content
             binding.spinner?.visibility = View.GONE
             binding.content?.visibility = View.VISIBLE
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        val actualRoutineID = sharedPref.getInt("actualRoutine", -1)
+        if (actualRoutineID != -1)
+            model.checkActualRoutines()
+
+        model.checkActualRoutine.observe(viewLifecycleOwner, {
+            if (it == true && actualRoutineID != -1) {
+                val actualRoutine = model.getRoutine(actualRoutineID)
+                if(actualRoutine != null) {
+                    binding.activeRoutine.visibility = View.VISIBLE
+                    binding.name.text = actualRoutine.name
+                    binding.activeRoutine.setOnClickListener {
+                        val dir = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(actualRoutineID)
+                        findNavController().navigate(dir)
+                    }
+                }
+            }
         })
     }
 

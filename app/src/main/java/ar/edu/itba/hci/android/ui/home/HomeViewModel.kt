@@ -1,5 +1,6 @@
 package ar.edu.itba.hci.android.ui.home
 
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,7 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
             viewModelScope.launch(Dispatchers.IO) {
                 try {
                     it.postValue(userRepository.getCurrentUserRoutines())
+                    _checkActualRoutine.postValue(true)
                 }
                 catch (ex:Exception) {
                     println("Error al cargar rutinas ${ex.stackTrace}")
@@ -38,11 +40,29 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
     private var _onlyFavorite = MutableLiveData(false)
     val onlyFavorite: LiveData<Boolean> = _onlyFavorite
 
+    private var _checkActualRoutine = MutableLiveData(false)
+    val checkActualRoutine: LiveData<Boolean> = _checkActualRoutine
+
     fun saveOrder(newOrder: Ordering) {
         _ordering.value = newOrder
     }
 
     fun toggleFavorite() {
         _onlyFavorite.value = !_onlyFavorite.value!!
+    }
+
+    fun getRoutine(routineID:Int) : Routine? {
+        _checkActualRoutine.value = false
+        var res:Routine? = null
+        routines.value?.content?.forEach {
+            if(it.id == routineID) {
+                res = it
+            }
+        }
+        return res
+    }
+
+    fun checkActualRoutines() {
+        _checkActualRoutine.value = true
     }
 }

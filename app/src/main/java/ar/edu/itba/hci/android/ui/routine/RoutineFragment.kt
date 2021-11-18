@@ -1,5 +1,6 @@
 package ar.edu.itba.hci.android.ui.routine
 
+import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -114,6 +115,14 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private fun startHandler() {
         mainViewModel.isExercising = true
+        val routineId = model.routine.value?.id
+        val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
+
+        if(routineId != null)
+            with (sharedPref.edit()) {
+                putInt("actualRoutine", routineId)
+                commit()
+            }
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
         model.routine.value?.let {
             action.routineID = it.id
