@@ -115,6 +115,10 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private fun startHandler() {
         mainViewModel.isExercising = true
         val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
+        model.routine.value?.let {
+            action.routineID = it.id
+        }
+
         findNavController().navigate(action)
     }
 

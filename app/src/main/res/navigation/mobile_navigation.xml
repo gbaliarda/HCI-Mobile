@@ -45,6 +45,10 @@
         <action
             android:id="@+id/action_executionFragment_to_navigation_routine"
             app:destination="@id/navigation_routine" />
+        <argument
+            android:name="routineID"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/notifications"
