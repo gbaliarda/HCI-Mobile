@@ -14,15 +14,21 @@ class ProfileViewModel(
 
     private val userRepository = application.userRepository
 
-    val profileResult: LiveData<ProfileResult> by lazy {
+    private val _profileResult: MutableLiveData<ProfileResult> by lazy {
         MutableLiveData<ProfileResult>().also {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    val currUser = userRepository.getCurrentUser()
-                    it.postValue(ProfileResult(name = currUser.firstName, email = currUser.email, avatarUrl = currUser.avatarUrl))
-                } catch(ex:Exception) {
-                    it.postValue(ProfileResult(name = null, email = null))
-                }
+            refreshProfile()
+        }
+    }
+    val profileResult: MutableLiveData<ProfileResult> = _profileResult
+
+    fun refreshProfile() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val currUser = userRepository.getCurrentUser()
+                _profileResult.postValue(ProfileResult(name = currUser.firstName, email = currUser.email, avatarUrl = currUser.avatarUrl))
+            } catch(ex:Exception) {
+                _profileResult.postValue(ProfileResult(name = null, email = null))
+                println("Error al cargar perfil ${ex.stackTrace}")
             }
         }
     }
