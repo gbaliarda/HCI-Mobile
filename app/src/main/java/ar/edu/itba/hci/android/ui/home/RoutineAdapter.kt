@@ -32,8 +32,6 @@ class RoutineAdapter(private val fragment:Fragment)
         binding.name.text = item.name
         binding.description.text = item.difficulty
         binding.startRoutineButton.setOnClickListener { start(item) }
-        binding.share.setOnClickListener { share(item) }
-        binding.favorite.setOnClickListener { favorite(item) }
         binding.root.setOnClickListener{ details(item) }
     }
 
@@ -46,13 +44,6 @@ class RoutineAdapter(private val fragment:Fragment)
 
     }
 
-    fun share(routine:Routine) {
-
-    }
-
-    fun favorite(routine: Routine) {
-
-    }
 
     override fun getItemCount() = routines.size
 

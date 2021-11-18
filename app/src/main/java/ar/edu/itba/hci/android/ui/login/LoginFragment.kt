@@ -69,12 +69,6 @@ class LoginFragment : Fragment() {
                     return@Observer
                 }
                 loginButton.isEnabled = loginFormState.isDataValid
-                loginFormState.usernameError?.let {
-                    usernameEditText.error = getString(it)
-                }
-                loginFormState.passwordError?.let {
-                    passwordEditText.error = getString(it)
-                }
             })
 
         loginViewModel.loginResult.observe(viewLifecycleOwner,
