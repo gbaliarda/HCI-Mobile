@@ -17,6 +17,7 @@ import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private val args: RoutineFragmentArgs by navArgs()

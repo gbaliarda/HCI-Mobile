@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.api.model.ApiError
+import ar.edu.itba.hci.android.api.model.User
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.Exception
@@ -37,6 +39,18 @@ class RoutineViewModel(private val routineID: Int, private val app: MainApplicat
         }
     }
 
+    val currentUser: LiveData<User> by lazy {
+        MutableLiveData<User>().also {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    it.postValue(app.userRepository.getCurrentUser())
+                } catch(ex:Exception) {
+                    println(ex.message)
+                }
+            }
+        }
+    }
+
     val liked: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>().also {
             it.value = false
@@ -49,7 +63,13 @@ class RoutineViewModel(private val routineID: Int, private val app: MainApplicat
         }
     }
 
+    fun userIsOwner():Boolean {
+        return !(currentUser.value == null || routine.value?.user?.id != currentUser.value!!.id)
+    }
+
     fun likeRoutine() {
+        if(!userIsOwner())
+            return
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 if(routine.value?.metadata == null)
@@ -63,7 +83,8 @@ class RoutineViewModel(private val routineID: Int, private val app: MainApplicat
     }
 
     fun scoreRoutine(newScore:Int) {
-        Log.d("newscore",newScore.toString())
+        if(!userIsOwner())
+            return
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 routine.value?.metadata?.score = newScore
