@@ -75,6 +75,6 @@ class LoginViewModel(
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length >= 8
     }
 }
