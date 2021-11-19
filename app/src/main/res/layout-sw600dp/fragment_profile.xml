@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:text="@string/mi_perfil"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/myProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/myProfile"
-                app:tint="#020202" />
+                app:tint="?attr/colorOnSurface" />
 
             <Button
                 android:id="@+id/cerrarSesion"
@@ -78,7 +78,8 @@
                     android:layout_marginEnd="100dp"
                     android:contentDescription="@string/profileimage"
                     android:src="@drawable/ic_profile_default"
-                    tools:ignore="ImageContrastCheck" />
+                    tools:ignore="ImageContrastCheck"
+                    app:tint="?attr/colorPrimary" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -93,7 +94,7 @@
                         android:layout_marginEnd="50dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/informacion_basica"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="24sp" />
 
                     <LinearLayout
@@ -108,7 +109,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/nombre"
-                            android:textColor="#000000"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="20sp" />
 
                         <TextView
@@ -117,8 +118,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:textColor="#000000"
-                            android:textSize="20sp" />
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="20sp"
+                            tools:text="test user" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -133,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
                             android:text="@string/email"
-                            android:textColor="#000000"
+                            android:textColor="?attr/colorOnSurface"
                             android:textSize="20sp" />
 
                         <TextView
@@ -142,8 +144,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/montserrat"
-                            android:textColor="#000000"
-                            android:textSize="20sp" />
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="20sp"
+                            tools:text="test@test.com" />
                     </LinearLayout>
 
                 </LinearLayout>

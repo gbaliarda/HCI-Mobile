@@ -15,7 +15,8 @@
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?attr/colorOnSurface" />
 
     <TimePicker
         android:id="@+id/timePicker"
@@ -84,6 +85,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6"
-        app:track="@drawable/track" />
+        app:track="@drawable/track"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

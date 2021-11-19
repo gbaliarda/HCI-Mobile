@@ -7,10 +7,9 @@
     android:clipToPadding="false"
     android:padding="6dp">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:backgroundTint="?attr/colorBackgroundFloating"
         app:cardCornerRadius="14dp"
         app:cardElevation="4dp">
 
@@ -67,6 +66,6 @@
                 app:tint="?attr/colorPrimary"
                 tools:src="@drawable/ic_eye_open" />
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </FrameLayout>

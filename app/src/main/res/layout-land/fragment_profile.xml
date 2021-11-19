@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="@string/mi_perfil"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,17 +42,19 @@
             app:layout_constraintBottom_toBottomOf="@+id/myProfile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/myProfile"
-            app:tint="#020202" />
+            app:tint="?attr/colorOnSurface" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myProfile">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/profileImg"
@@ -61,6 +63,7 @@
                 android:layout_marginEnd="50dp"
                 android:contentDescription="@string/profileimage"
                 android:src="@drawable/ic_profile_default"
+                app:tint="?attr/colorPrimary"
                 tools:ignore="ImageContrastCheck" />
 
             <LinearLayout
@@ -75,7 +78,7 @@
                     android:layout_marginEnd="50dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/informacion_basica"
-                    android:textColor="#000000"
+                    android:textColor="?attr/colorOnSurface"
                     android:textSize="22sp" />
 
                 <LinearLayout
@@ -90,7 +93,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/nombre"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp" />
 
                     <TextView
@@ -99,8 +102,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="18sp"
+                        tools:text="test user" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/email"
-                        android:textColor="#000000"
+                        android:textColor="?attr/colorOnSurface"
                         android:textSize="18sp" />
 
                     <TextView
@@ -124,8 +128,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:fontFamily="@font/montserrat"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="18sp"
+                        tools:text="test@test.com" />
                 </LinearLayout>
 
                 <Button

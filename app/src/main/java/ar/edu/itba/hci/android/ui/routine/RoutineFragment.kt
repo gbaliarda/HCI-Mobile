@@ -101,8 +101,10 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         })
     }
 
-    override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-        model.scoreRoutine(p1.toInt())
+    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
+        model.scoreRoutine(rating.toInt())
+        if(fromUser)
+            Snackbar.make(binding.content, getString(R.string.rating_saved), Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

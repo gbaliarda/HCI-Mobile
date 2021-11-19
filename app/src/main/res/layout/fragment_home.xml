@@ -23,7 +23,7 @@
             android:gravity="center"
             android:text="@string/mis_rutinas"
             android:textAlignment="center"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:src="@drawable/ic_filter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/myRoutines"
-            app:tint="@color/black" />
+            app:tint="?attr/colorOnSurface" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"

@@ -87,4 +87,5 @@
     <string name="userNotLogin">Error: User is not logged in</string>
     <string name="duration">Duration</string>
     <string name="execution_rest">Break time</string>
+    <string name="rating_saved">Rating saved</string>
 </resources>

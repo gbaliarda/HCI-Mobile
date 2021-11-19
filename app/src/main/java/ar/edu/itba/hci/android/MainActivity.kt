@@ -9,10 +9,12 @@ import android.os.IBinder
 import android.util.AttributeSet
 import android.widget.Toast
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.edu.itba.hci.android.databinding.ActivityMainBinding
@@ -62,6 +64,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(
+                left = insets.left,
+                right = insets.right,
+                top = insets.top
+            )
+            binding.navView.updatePadding(bottom = insets.bottom)
+
+            WindowInsetsCompat.CONSUMED
+        }
+
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val miniPlayer = binding.miniPlayer
@@ -106,7 +121,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.controller.pause.setOnClickListener { pauseOrPlay() }
         binding.controller.play.setOnClickListener { pauseOrPlay() }
 
         binding.controller.cancelButton.setOnClickListener {
@@ -144,15 +158,13 @@ class MainActivity : AppCompatActivity() {
             binding.controller.exerciseName.text = it.exercise.name
             binding.controller.exerciseCount.text = getString(
                 R.string.execution_exercise_count,
-                exViewModel.currentExerciseIndex + 1,
-                exViewModel.executionList.size
+                exViewModel.currentExerciseIndex/2 + 1,
+                exViewModel.executionList.size/2
             )
             if (it.exercise.repetitionType == Exercise.RepetitionType.TIMES) {
-                binding.controller.pause.isEnabled = false
                 binding.controller.play.isEnabled = false
                 binding.controller.bottomText.text = getString(R.string.miniplayer_repetitions, it.exercise.repetitionValue)
             } else {
-                binding.controller.pause.isEnabled = true
                 binding.controller.play.isEnabled = true
 
                 val seconds:Int =
@@ -172,17 +184,16 @@ class MainActivity : AppCompatActivity() {
 
 
         exViewModel.timerRunning.observe(this, {
-            when (it) {
-                true -> {
-                    binding.controller.pause.visibility = View.VISIBLE
-                    binding.controller.play.visibility = View.GONE
+            binding.controller.play.setImageDrawable(
+                when (it) {
+                    true -> {
+                        ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_pause_24, null)
+                    }
+                    false -> {
+                        ResourcesCompat.getDrawable(resources, R.drawable.ic_baseline_play_arrow_24, null)
+                    }
                 }
-                false -> {
-                    binding.controller.pause.visibility = View.GONE
-                    binding.controller.play.visibility = View.VISIBLE
-                }
-            }
-
+            )
         })
 
         exViewModel.isPlaying.observe(this, {

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,7 +29,7 @@
                 android:gravity="center"
                 android:text="@string/mi_perfil"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +45,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/myProfile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/myProfile"
-                app:tint="#020202" />
+                app:tint="?attr/colorOnSurface" />
 
             <ImageView
                 android:id="@+id/profileImg"
@@ -57,7 +59,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myProfile"
                 app:layout_constraintVertical_bias="0.09"
-                tools:ignore="ImageContrastCheck" />
+                tools:ignore="ImageContrastCheck"
+                app:tint="?attr/colorPrimary" />
 
             <TextView
                 android:id="@+id/titleProfile"
@@ -67,7 +70,7 @@
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/informacion_basica"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImg" />
@@ -79,10 +82,11 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text=""
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/nameProfile"
-                app:layout_constraintTop_toTopOf="@+id/nameProfile" />
+                app:layout_constraintTop_toTopOf="@+id/nameProfile"
+                tools:text="test user"/>
 
             <TextView
                 android:id="@+id/nameProfile"
@@ -92,7 +96,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/nombre"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleProfile" />
@@ -105,7 +109,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/email"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameProfile" />
@@ -117,10 +121,11 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text=""
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnSurface"
                 android:textSize="18sp"
                 app:layout_constraintStart_toEndOf="@+id/nameProfile3"
-                app:layout_constraintTop_toTopOf="@+id/nameProfile3" />
+                app:layout_constraintTop_toTopOf="@+id/nameProfile3"
+                tools:text="test@test.com"/>
 
             <Button
                 android:id="@+id/cerrarSesion"

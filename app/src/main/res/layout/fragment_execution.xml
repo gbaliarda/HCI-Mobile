@@ -43,7 +43,7 @@
             android:singleLine="true"
             android:text="@string/Exercise_name"
             android:textAlignment="center"
-            android:textColor="#444444"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="40sp"
             app:layout_constraintBottom_toTopOf="@+id/timer"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +56,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textAlignment="center"
-            android:textColor="#444444"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/backToRoutineButton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
             android:fontFamily="@font/montserrat"
             android:gravity="center"
             android:textAlignment="center"
-            android:textColor="@color/orange"
+            android:textColor="?attr/colorPrimary"
             android:textSize="60sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/playOrPauseButton"
@@ -187,7 +187,7 @@
             android:layout_width="189dp"
             android:layout_height="62dp"
             android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="?attr/colorPrimary"
             android:fontFamily="@font/montserrat"
             android:text="@string/play"
             android:textAllCaps="false"
@@ -212,7 +212,7 @@
             app:layout_constraintStart_toEndOf="@+id/playOrPauseButton"
             app:layout_constraintTop_toTopOf="@+id/playOrPauseButton"
             app:layout_constraintVertical_bias="0.571"
-            app:tint="@color/orange"
+            app:tint="?attr/colorPrimaryVariant"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -228,8 +228,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/playOrPauseButton"
             app:layout_constraintEnd_toStartOf="@+id/playOrPauseButton"
             app:layout_constraintTop_toTopOf="@+id/playOrPauseButton"
-            app:layout_constraintVertical_bias="0.571"
-            app:tint="@color/orange"
+            app:tint="?attr/colorPrimaryVariant"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
