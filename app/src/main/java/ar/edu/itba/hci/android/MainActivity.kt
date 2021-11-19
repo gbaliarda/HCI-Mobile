@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             binding.miniPlayer.visibility = View.GONE
             mainViewmodel.isExercising = false
             Toast.makeText(this, "Rutina completada", Toast.LENGTH_SHORT).show()
-            exViewModel.reset()
+            exViewModel.routineID = -1
         })
 
         exViewModel.isFirstExercise.observe(this, {

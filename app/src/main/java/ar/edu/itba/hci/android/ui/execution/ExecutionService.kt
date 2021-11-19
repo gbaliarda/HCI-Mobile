@@ -46,7 +46,7 @@ class ExecutionService : LifecycleService() {
             timer--
             model!!.timer.postValue(timer)
         }
-        stopForeground(false)
+        pause()
     }
 
     fun pause() {

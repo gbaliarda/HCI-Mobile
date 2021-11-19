@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.opengl.Visibility
 import android.os.Bundle
 import android.os.IBinder
 import androidx.fragment.app.Fragment
@@ -104,10 +105,20 @@ class ExecutionFragment : Fragment() {
         })
 
         model.currentExercise.observe(viewLifecycleOwner, {
+            if(it.isRest) {
+                binding.exerciseName.text = getString(R.string.execution_rest)
+                model.timer.value = it.exercise.restTime
+                binding.refreshButton.visibility = View.GONE
+                binding.playOrPauseButton.isEnabled = true
+                binding.exerciseInfo.visibility = View.INVISIBLE
+                return@observe
+            }
+
             binding.exerciseName.text = it.exercise.name
             binding.cycleName.text = it.cycle.name
             binding.cycleSet.text = getString(R.string.execution_sets, it.cycleRepetition, it.cycle.repetitions)
-            binding.exerciseCount.text = getString(R.string.execution_exercise_count, model.currentExerciseIndex+1, model.executionList.size)
+            binding.exerciseCount.text = getString(R.string.execution_exercise_count, model.currentExerciseIndex/2+1, model.executionList.size/2)
+            binding.exerciseInfo.visibility = View.VISIBLE
 
             when(it.exercise.repetitionType) {
                 Exercise.RepetitionType.TIMES -> {

@@ -81,7 +81,19 @@ class ExecutionViewModel(app: MainApplication) : ViewModel() {
 
         currentExerciseIndex++
 
-        val currEx = executionList[currentExerciseIndex]
+        var currEx = executionList[currentExerciseIndex]
+
+        if(currEx.isRest && currEx.exercise.restTime == 0 &&
+            currentExerciseIndex == executionList.size - 1) {
+            _finished.value = true
+            timerRunning.value = false
+            return
+        }
+        else if(currEx.isRest && currEx.exercise.restTime == 0) {
+            currentExerciseIndex++
+            currEx = executionList[currentExerciseIndex]
+        }
+
         _currentExercise.value = currEx
 
         if(currentExerciseIndex > 0)
@@ -95,7 +107,9 @@ class ExecutionViewModel(app: MainApplication) : ViewModel() {
 
         currentExerciseIndex--
 
-        val currEx = executionList[currentExerciseIndex]
+        var currEx = executionList[currentExerciseIndex]
+        if(currEx.isRest) currEx = executionList[--currentExerciseIndex]
+
         _currentExercise.value = currEx
 
         if(currentExerciseIndex == 0)
@@ -108,6 +122,8 @@ class ExecutionViewModel(app: MainApplication) : ViewModel() {
         timerRunning.value = false
         _finished.value = false
         currentExerciseIndex = 0
+        _isFirstExercise.value = true
+        routineID = -1
     }
 
     private fun fillExecutionList(routine:Routine) {
@@ -116,6 +132,13 @@ class ExecutionViewModel(app: MainApplication) : ViewModel() {
             for(i in 1..cycle.repetitions) {
                 for(exercise in cycle.exercises) {
                     list.add(ExecutionExercise(
+                        false,
+                        exercise,
+                        cycle,
+                        i
+                    ))
+                    list.add(ExecutionExercise(
+                        true,
                         exercise,
                         cycle,
                         i
@@ -128,6 +151,7 @@ class ExecutionViewModel(app: MainApplication) : ViewModel() {
     }
 
     data class ExecutionExercise(
+        val isRest:Boolean,
         val exercise:Exercise,
         val cycle:Cycle,
         val cycleRepetition:Int,

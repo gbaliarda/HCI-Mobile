@@ -54,8 +54,14 @@ class RoutineAdapter(private val fragment:HomeFragment)
     private fun start(routine:Routine) {
         val directions = HomeFragmentDirections.actionNavigationHomeToExecutionFragment()
         directions.routineID = routine.id
-        fragment.findNavController().navigate(directions)
         fragment.mainModel.isExercising = true
+
+        if(fragment.exModel.routineID != routine.id) {
+            fragment.exModel.reset()
+        }
+
+        fragment.findNavController().navigate(directions)
+
     }
 
     override fun getItemCount() = routines.size

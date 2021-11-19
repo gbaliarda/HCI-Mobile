@@ -86,4 +86,5 @@
     <string name="userNotOwner">Error: User is not owner</string>
     <string name="userNotLogin">Error: User is not logged in</string>
     <string name="duration">Duration</string>
+    <string name="execution_rest">Break time</string>
 </resources>
