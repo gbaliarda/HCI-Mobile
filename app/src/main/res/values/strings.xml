@@ -44,7 +44,7 @@
     <string name="explorar_rutinas">Explore Routines</string>
     <string name="filtrar">Filter</string>
     <string name="buscar">Search</string>
-    <string name="pausa">Pause</string>
+    <string name="pause">Pause</string>
     <!-- Strings related to Notifications -->
     <string name="guardar">Save</string>
     <string name="notificaciones">Notifications</string>
@@ -63,4 +63,16 @@
     <string name="more_information">more_Information</string>
     <!-- Strings related to Executions -->
     <string name="formatted_time">%02d:%02d</string>
+    <string name="execution_channel_title">Execution</string>
+    <string name="execution_channel_desc">Routine execution notifications</string>
+    <string name="execution_notif_title">Routine: %s</string>
+    <string name="execution_notif_content">Remaining time: %ds</string>
+    <string name="resume">Resume</string>
+    <string name="routine_start_button_continue">Continue</string>
+    <string name="execution_exercise_count">Exercise %d / %d</string>
+    <string name="execution_sets">Set %d / %d</string>
+    <string name="timer">%ds</string>
+    <string name="miniplayer_timer">"%ds - "</string>
+    <string name="miniplayer_repetitions">"x%d - "</string>
+    <string name="main_start_routine_button">Start</string>
 </resources>

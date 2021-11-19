@@ -33,7 +33,7 @@
     <string name="explorar_rutinas">Explorar Rutinas</string>
     <string name="filtrar">Filtrar</string>
     <string name="buscar">Buscar</string>
-    <string name="pausa">Pausa</string>
+    <string name="pause">Pausa</string>
     <string name="guardar">Guardar</string>
     <string name="notificaciones">Notificaciones</string>
     <string name="horario_de_recordatorio_diario">Horario de recordatorio diario</string>
@@ -50,4 +50,16 @@
     <string name="more_information">más información</string>
     <!-- Strings related to Executions -->
     <string name="formatted_time">%02d:%02d</string>
+    <string name="execution_sets">Set %d / %d</string>
+    <string name="miniplayer_repetitions">"x%d - "</string>
+    <string name="execution_channel_title">Ejecución</string>
+    <string name="execution_channel_desc">Notificaciones de ejecución de rutinas</string>
+    <string name="execution_notif_title">Rutina: %s</string>
+    <string name="execution_notif_content">Tiempo restante: %ds</string>
+    <string name="resume">Resumir</string>
+    <string name="routine_start_button_continue">Continuar</string>
+    <string name="execution_exercise_count">Ejercicio %d / %d</string>
+    <string name="timer">%ds</string>
+    <string name="miniplayer_timer">"%ds - "</string>
+    <string name="main_start_routine_button">Iniciar</string>
 </resources>

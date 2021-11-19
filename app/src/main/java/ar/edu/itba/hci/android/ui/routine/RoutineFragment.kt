@@ -1,6 +1,5 @@
 package ar.edu.itba.hci.android.ui.routine
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +19,7 @@ import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
@@ -36,7 +35,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private lateinit var exerciseAdapter: ExerciseAdapter
     private val mainViewModel : MainViewModel by activityViewModels()
-    private val exViewModel : ExecutionViewModel by viewModels()
+    private val exViewModel : ExecutionViewModel by activityViewModels {ExecutionViewModelFactory(app)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,6 +72,11 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.difficulty.text = it.difficulty
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
+
+            when(model.routine.value?.id == exViewModel.routineID) {
+                true -> binding.startButton.text = getString(R.string.routine_start_button_continue)
+                false -> binding.startButton.text = getString(R.string.routine_start_button)
+            }
         })
 
         model.liked.observe(viewLifecycleOwner, {
@@ -114,12 +118,16 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private fun startHandler() {
         mainViewModel.isExercising = true
-        val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
-        model.routine.value?.let {
-            action.routineID = it.id
-        }
+        if(exViewModel.routineID != model.routine.value?.id) {
+            exViewModel.reset()
 
-        findNavController().navigate(action)
+            val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
+            model.routine.value?.let {
+                action.routineID = it.id
+            }
+            findNavController().navigate(action)
+        }
+        else findNavController().navigate(R.id.executionFragment)
     }
 
     private fun notImplemented() {

@@ -6,7 +6,8 @@ data class Exercise(
     val repetitionValue: Int,
     val description: String,
     val group: String,
-    val difficulty: String
+    val difficulty: String,
+    val restTime:Int
 ) {
     enum class RepetitionType {
         TIMES,

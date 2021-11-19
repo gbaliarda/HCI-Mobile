@@ -8,7 +8,6 @@ import android.content.IntentFilter
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.app.ServiceCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
 import ar.edu.itba.hci.android.MainActivity
@@ -19,6 +18,9 @@ import java.lang.IllegalStateException
 class ExecutionService : LifecycleService() {
     companion object {
         private const val NOTIF_CHANNEL_ID = "execution_channel"
+        private const val NOTIF_ID = 1
+        private const val ACTION_PAUSE = "PAUSE"
+        private const val ACTION_RESUME = "RESUME"
     }
 
     var model: ExecutionViewModel? = null
@@ -27,8 +29,16 @@ class ExecutionService : LifecycleService() {
     private var job: Job? = null
     private val broadcastReceiver = ExecutionActionReceiver()
 
+    private val openPendingIntent
+        get() = Intent(this, MainActivity::class.java).let { notificationIntent ->
+            PendingIntent.getActivity(
+                this, 0, notificationIntent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+        }
+
     private suspend fun backgroundThread() {
-        var timer = 30
+        var timer = model!!.timer.value!!
         model!!.timer.postValue(timer)
 
         while (timer > 0) {
@@ -36,31 +46,23 @@ class ExecutionService : LifecycleService() {
             timer--
             model!!.timer.postValue(timer)
         }
-        stopForeground(true)
-    }
-
-    private fun updateNotif() {
-        val pendingIntent: PendingIntent =
-            Intent(this, MainActivity::class.java).let { notificationIntent ->
-                PendingIntent.getActivity(
-                    this, 0, notificationIntent,
-                    PendingIntent.FLAG_IMMUTABLE
-                )
-            }
-
-        val manager =
-            getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
-        manager.notify(1, buildNotification(pendingIntent))
+        stopForeground(false)
     }
 
     fun pause() {
-        stopForeground(Service.STOP_FOREGROUND_DETACH)
-        model!!.running.postValue(false)
+        if (model?.timerRunning?.value != true) return
+
+        stopForeground(false)
+        model!!.timerRunning.postValue(false)
         job?.cancel()
     }
 
     fun resume() {
-        model!!.running.postValue(true)
+        if(model?.timerRunning?.value != false) return
+
+        job?.cancel()
+        startForeground(NOTIF_ID, buildNotification())
+        model!!.timerRunning.postValue(true)
         job = lifecycleScope.launch {
             backgroundThread()
         }
@@ -74,31 +76,21 @@ class ExecutionService : LifecycleService() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
 
-        val pendingIntent: PendingIntent =
-            Intent(this, MainActivity::class.java).let { notificationIntent ->
-                PendingIntent.getActivity(
-                    this, 0, notificationIntent,
-                    PendingIntent.FLAG_IMMUTABLE
-                )
-            }
-
         val filter = IntentFilter()
-        filter.addAction("PAUSE")
-        filter.addAction("RESUME")
+        filter.addAction(ACTION_PAUSE)
+        filter.addAction(ACTION_RESUME)
         registerReceiver(broadcastReceiver, filter)
 
         createNotificationChannel()
-        startForeground(1, buildNotification(pendingIntent))
 
         model!!.timer.observe(this, {
             updateNotif()
         })
 
-        model!!.running.observe(this, {
+        model!!.timerRunning.observe(this, {
             updateNotif()
         })
 
-        // If we get killed, after returning from here, restart
         return START_STICKY_COMPATIBILITY
     }
 
@@ -107,42 +99,50 @@ class ExecutionService : LifecycleService() {
         job?.cancel()
     }
 
-    private fun buildNotification(intent: PendingIntent): Notification {
-        val running = model!!.running.value!!
+    private fun updateNotif() {
+        val manager =
+            getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        manager.notify(NOTIF_ID, buildNotification())
+    }
 
-        val buttonIntent = Intent(when(running) {
-            true -> "PAUSE"
-            else -> "RESUME"
-        })
+    private fun buildNotification(): Notification {
+        val running = model!!.timerRunning.value!!
+
+        val buttonIntent = Intent(
+            when (running) {
+                true -> ACTION_PAUSE
+                else -> ACTION_RESUME
+            }
+        )
         val pendingButtonIntent =
             PendingIntent.getBroadcast(this, 0, buttonIntent, PendingIntent.FLAG_IMMUTABLE)
 
-        val buttonAction = when(running) {
+        val buttonAction = when (running) {
             true -> NotificationCompat.Action(
                 R.drawable.ic_baseline_pause_24,
-                "Pause",
+                getString(R.string.pause),
                 pendingButtonIntent
             )
             else -> NotificationCompat.Action(
                 R.drawable.ic_baseline_play_arrow_24,
-                "Play",
+                getString(R.string.resume),
                 pendingButtonIntent
             )
         }
 
         return NotificationCompat.Builder(this, NOTIF_CHANNEL_ID)
-            .setContentTitle("Ejecución ${model!!.routine.value!!.name}")
-            .setContentText("Timer: ${model!!.timer.value!!}")
+            .setContentTitle(getString(R.string.execution_notif_title, model!!.routine.value!!.name))
+            .setContentText(getString(R.string.execution_notif_content, model!!.timer.value!!))
             .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setContentIntent(intent)
+            .setContentIntent(openPendingIntent)
             .addAction(buttonAction)
             .build()
     }
 
     private fun createNotificationChannel() {
-        val name = "Executions"
-        val desc = "Execution notification"
-        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val name = getString(R.string.execution_channel_title)
+        val desc = getString(R.string.execution_channel_desc)
+        val importance = NotificationManager.IMPORTANCE_LOW
         val channel = NotificationChannel(NOTIF_CHANNEL_ID, name, importance)
         channel.description = desc
         val notificationManager =
@@ -158,11 +158,11 @@ class ExecutionService : LifecycleService() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent == null) return
 
-            when(intent.action) {
-                "PAUSE" -> {
+            when (intent.action) {
+                ACTION_PAUSE -> {
                     pause()
                 }
-                "RESUME" -> {
+                ACTION_RESUME -> {
                     resume()
                 }
                 else -> throw IllegalStateException()

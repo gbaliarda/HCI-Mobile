@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_routine"
             app:destination="@id/navigation_routine" />
+        <action
+            android:id="@+id/action_navigation_home_to_executionFragment"
+            app:destination="@id/executionFragment" />
     </fragment>
 
     <fragment

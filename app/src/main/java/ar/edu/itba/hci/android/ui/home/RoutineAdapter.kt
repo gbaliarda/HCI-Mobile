@@ -10,7 +10,7 @@ import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.RoutineCardBinding
 
-class RoutineAdapter(private val fragment:Fragment)
+class RoutineAdapter(private val fragment:HomeFragment)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
 
     var routines:List<Routine> = listOf()
@@ -32,26 +32,19 @@ class RoutineAdapter(private val fragment:Fragment)
         binding.name.text = item.name
         binding.description.text = item.difficulty
         binding.startRoutineButton.setOnClickListener { start(item) }
-        binding.share.setOnClickListener { share(item) }
-        binding.favorite.setOnClickListener { favorite(item) }
         binding.root.setOnClickListener{ details(item) }
     }
 
-    fun details(routine:Routine) {
+    private fun details(routine:Routine) {
         val dir = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(routine.id)
         fragment.findNavController().navigate(dir)
     }
 
-    fun start(routine:Routine) {
-
-    }
-
-    fun share(routine:Routine) {
-
-    }
-
-    fun favorite(routine: Routine) {
-
+    private fun start(routine:Routine) {
+        val directions = HomeFragmentDirections.actionNavigationHomeToExecutionFragment()
+        directions.routineID = routine.id
+        fragment.findNavController().navigate(directions)
+        fragment.mainModel.isExercising = true
     }
 
     override fun getItemCount() = routines.size

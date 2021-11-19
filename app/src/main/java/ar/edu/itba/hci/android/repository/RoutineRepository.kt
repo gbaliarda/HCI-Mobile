@@ -16,6 +16,7 @@ class RoutineRepository(app: MainApplication) :
 
         val cycles = apiCycles.content.sortedBy{ it.order }.map { cycle ->
             val apiExercises = unwrapResponse(apiService.getCycleExercises(cycle.id))
+            var exIndex = 0
             val exercises = apiExercises.content.sortedBy{ it.order }.map { cycleEx ->
                 val repetitionType:Exercise.RepetitionType
                 val repetitionValue:Int
@@ -35,13 +36,16 @@ class RoutineRepository(app: MainApplication) :
                     }
                 }
 
+                val restTime = cycle.metadata.descansos[exIndex++]
+
                 Exercise(
                     cycleEx.exercise.name,
                     repetitionType,
                     repetitionValue,
                     cycleEx.exercise.detail,
                     cycleEx.exercise.metadata.grupo,
-                    cycleEx.exercise.metadata.dif
+                    cycleEx.exercise.metadata.dif,
+                    restTime
                 )
             }
 
