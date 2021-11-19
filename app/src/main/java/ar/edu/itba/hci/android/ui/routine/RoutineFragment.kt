@@ -18,6 +18,8 @@ import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
@@ -34,6 +36,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private lateinit var exerciseAdapter: ExerciseAdapter
     private val mainViewModel : MainViewModel by activityViewModels()
+    private val exViewModel : ExecutionViewModel by activityViewModels {ExecutionViewModelFactory(app)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,6 +85,11 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
                 binding.difficulty.text = it.difficulty[0].uppercase() + it.difficulty.substring(1)
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
+
+            when(model.routine.value?.id == exViewModel.routineID) {
+                true -> binding.startButton.text = getString(R.string.routine_start_button_continue)
+                false -> binding.startButton.text = getString(R.string.routine_start_button)
+            }
         })
 
         model.liked.observe(viewLifecycleOwner, {
@@ -123,8 +131,16 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
 
     private fun startHandler() {
         mainViewModel.isExercising = true
-        val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
-        findNavController().navigate(action)
+        if(exViewModel.routineID != model.routine.value?.id) {
+            exViewModel.reset()
+
+            val action = RoutineFragmentDirections.actionNavigationRoutineToExecution1Fragment()
+            model.routine.value?.let {
+                action.routineID = it.id
+            }
+            findNavController().navigate(action)
+        }
+        else findNavController().navigate(R.id.executionFragment)
     }
 
 }

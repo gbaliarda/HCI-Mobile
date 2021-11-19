@@ -13,8 +13,11 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
+import ar.edu.itba.hci.android.MainViewModel
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
+import ar.edu.itba.hci.android.ui.execution.ExecutionViewModelFactory
 import java.util.*
 
 import android.util.TypedValue
@@ -27,7 +30,9 @@ class HomeFragment : Fragment() {
         requireActivity().application as MainApplication
     }
 
+    val mainModel:MainViewModel by activityViewModels()
     private val model: HomeViewModel by activityViewModels { HomeViewModelFactory(app) }
+    val exModel: ExecutionViewModel by activityViewModels { ExecutionViewModelFactory(app) }
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -87,11 +92,9 @@ class HomeFragment : Fragment() {
 
         adapter = RoutineAdapter(this)
 
-        //TODO: Recyclerview horizontal
-
-        binding.recycler?.layoutManager = LinearLayoutManager(context)
+        binding.recycler.layoutManager = LinearLayoutManager(context)
 //        binding.recycler?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
-        binding.recycler?.adapter = adapter
+        binding.recycler.adapter = adapter
 
         model.routines.observe(viewLifecycleOwner, {
             adapter.routines = it.content
@@ -113,15 +116,15 @@ class HomeFragment : Fragment() {
         requireContext().theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
         val colorPrimary = typedValue.data
 
-        binding.swipeRefresh?.setColorSchemeColors(colorPrimary)
-        binding.swipeRefresh?.isRefreshing = true
-        binding.swipeRefresh?.setOnRefreshListener {
+        binding.swipeRefresh.setColorSchemeColors(colorPrimary)
+        binding.swipeRefresh.isRefreshing = true
+        binding.swipeRefresh.setOnRefreshListener {
             model.refreshRoutines()
         }
             
         model.routines.observe(viewLifecycleOwner, {
             adapter.routines = it.content
-            binding.swipeRefresh?.isRefreshing = false
+            binding.swipeRefresh.isRefreshing = false
         })
     }
 

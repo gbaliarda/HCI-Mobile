@@ -11,7 +11,7 @@ import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.RoutineCardBinding
 import java.util.*
 
-class RoutineAdapter(private val fragment:Fragment)
+class RoutineAdapter(private val fragment:HomeFragment)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
 
     var routines:List<Routine> = listOf()
@@ -46,15 +46,23 @@ class RoutineAdapter(private val fragment:Fragment)
         binding.root.setOnClickListener{ details(item) }
     }
 
-    fun details(routine:Routine) {
+    private fun details(routine:Routine) {
         val dir = HomeFragmentDirections.actionNavigationHomeToNavigationRoutine(routine.id)
         fragment.findNavController().navigate(dir)
     }
 
-    fun start(routine:Routine) {
+    private fun start(routine:Routine) {
+        val directions = HomeFragmentDirections.actionNavigationHomeToExecutionFragment()
+        directions.routineID = routine.id
+        fragment.mainModel.isExercising = true
+
+        if(fragment.exModel.routineID != routine.id) {
+            fragment.exModel.reset()
+        }
+
+        fragment.findNavController().navigate(directions)
 
     }
-
 
     override fun getItemCount() = routines.size
 

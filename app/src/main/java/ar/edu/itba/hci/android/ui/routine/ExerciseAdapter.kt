@@ -2,8 +2,11 @@ package ar.edu.itba.hci.android.ui.routine
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.itba.hci.android.R
 import ar.edu.itba.hci.android.databinding.CycleHeaderBinding
@@ -91,6 +94,21 @@ class ExerciseAdapter(private val context: Context) :
             }
 
             binding.repetitions.text = repetitions
+
+            binding.infoButton.setOnClickListener {
+                val bottomSheetFragment = ExerciseFragment()
+                val bundle = Bundle()
+                bundle.putString("name", ex.name)
+                bundle.putString("difficulty", ex.difficulty)
+                bundle.putString("group", ex.group)
+                bundle.putString("desc", ex.description)
+                bottomSheetFragment.arguments = bundle
+
+                bottomSheetFragment.show(
+                    (context as AppCompatActivity).supportFragmentManager,
+                    "bottomSheetFragment"
+                )
+            }
         }
     }
 

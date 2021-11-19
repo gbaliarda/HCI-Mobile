@@ -19,30 +19,49 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/Exercise_name"
-        android:layout_width="94dp"
+        android:id="@+id/exerciseName"
+        android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="12dp"
-        android:text="Soga"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
         app:layout_constraintStart_toEndOf="@+id/cancel_button"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Soga" />
+        tools:text="Sentadillas" />
 
     <TextView
-        android:id="@+id/serie_number"
-        android:layout_width="44dp"
+        android:id="@+id/bottomText"
+        android:layout_width="wrap_content"
         android:layout_height="16dp"
-        android:text="Serie 1"
+        android:text="Serie 1 - "
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/Exercise_name"
-        app:layout_constraintTop_toBottomOf="@+id/Exercise_name"
+        app:layout_constraintStart_toStartOf="@+id/exerciseName"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseName"
+        app:tint="@color/white" />
+
+    <TextView
+        android:id="@+id/exerciseCount"
+        android:layout_width="0dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomText"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+        app:layout_constraintStart_toEndOf="@+id/bottomText"
+        app:layout_constraintTop_toTopOf="@+id/bottomText"
         app:tint="@color/white"
-        tools:text="Serie 1" />
+        tools:text="Ejercicio 1 / 10" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
