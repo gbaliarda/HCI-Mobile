@@ -5,7 +5,9 @@ import ar.edu.itba.hci.android.api.model.Cycle
 import ar.edu.itba.hci.android.api.model.CycleExercise
 import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface RoutineService {
@@ -17,4 +19,7 @@ interface RoutineService {
 
     @GET("cycles/{cycleID}/exercises")
     suspend fun getCycleExercises(@Path("cycleID") cycleID:Int) : ApiResponse<PagedList<CycleExercise>>
+
+    @PUT("routines/{routineID}")
+    suspend fun modifyRoutine(@Path("routineID") routineID: Int, @Body routine:Routine)
 }

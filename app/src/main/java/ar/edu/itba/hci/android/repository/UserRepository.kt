@@ -3,6 +3,9 @@ package ar.edu.itba.hci.android.repository
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.api.service.UserService
 import ar.edu.itba.hci.android.api.model.Credentials
+import ar.edu.itba.hci.android.api.model.PagedList
+import ar.edu.itba.hci.android.api.model.Routine
+import java.util.*
 
 class UserRepository(application:MainApplication)
     : BaseRepository<UserService>(application, UserService::class.java) {

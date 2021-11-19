@@ -62,4 +62,13 @@
     <string name="timer">%ds</string>
     <string name="miniplayer_timer">"%ds - "</string>
     <string name="main_start_routine_button">Iniciar</string>
+    <string name="filterTitle">Ordenar Rutinas</string>
+    <string name="filterDate">Fecha de creación</string>
+    <string name="filterDifficulty">Dificultad</string>
+    <string name="filterScore">Puntuación</string>
+    <string name="filterFav">Mostrar solo favoritas</string>
+    <string name="userNotOwner">Error: Usuario no es dueño de la rutina</string>
+    <string name="userNotLogin">Error: Usuario no tiene una sesion activa</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="duration">Duración</string>
 </resources>

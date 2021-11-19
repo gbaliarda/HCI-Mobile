@@ -38,6 +38,7 @@ class FilterFragment : BottomSheetDialogFragment(), RadioGroup.OnCheckedChangeLi
             binding.radioDate.id -> model.saveOrder(Ordering.DATE)
             binding.radioDiff.id -> model.saveOrder(Ordering.DIFFICULTY)
             binding.radioScore.id -> model.saveOrder(Ordering.SCORE)
+            binding.radioDuration.id -> model.saveOrder(Ordering.DURATION)
         }
     }
 

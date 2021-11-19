@@ -62,4 +62,13 @@
             android:id="@+id/action_notifications_to_navigation_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="ar.edu.itba.hci.android.MainActivity"
+        android:label="MainActivity" />
+    <activity
+        android:id="@+id/login2"
+        android:name="ar.edu.itba.hci.android.Login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>

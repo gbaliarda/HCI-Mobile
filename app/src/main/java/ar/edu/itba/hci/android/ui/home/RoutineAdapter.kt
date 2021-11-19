@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ar.edu.itba.hci.android.api.model.PagedList
 import ar.edu.itba.hci.android.api.model.Routine
 import ar.edu.itba.hci.android.databinding.RoutineCardBinding
+import java.util.*
 
 class RoutineAdapter(private val fragment:HomeFragment)
     : RecyclerView.Adapter<RoutineAdapter.ViewHolder>() {
@@ -25,12 +26,22 @@ class RoutineAdapter(private val fragment:HomeFragment)
         return ViewHolder(binding)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.binding
         val item = routines[position]
 
         binding.name.text = item.name
-        binding.description.text = item.difficulty
+
+        if (Locale.getDefault().displayLanguage == "español")
+            when(item.difficulty) {
+                "rookie", "beginner" -> binding.description.text = "Principiante"
+                "intermediate" -> binding.description.text = "Intermedia"
+                "advanced", "expert" -> binding.description.text = "Avanzada"
+            }
+        else
+            binding.description.text = item.difficulty[0].uppercase() + item.difficulty.substring(1)
+
         binding.startRoutineButton.setOnClickListener { start(item) }
         binding.root.setOnClickListener{ details(item) }
     }

@@ -1,6 +1,5 @@
 package ar.edu.itba.hci.android.ui.home
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +10,11 @@ import ar.edu.itba.hci.android.api.model.Routine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val app: MainApplication) : ViewModel() {
+enum class Ordering {
+    NONE, DATE, SCORE, DIFFICULTY, DURATION
+}
+
+class HomeViewModel(app: MainApplication) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -20,15 +23,22 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
 
     private val userRepository = app.userRepository
 
-    val routines:LiveData<PagedList<Routine>> by lazy {
+
+    private val _routines:MutableLiveData<PagedList<Routine>> by lazy {
         MutableLiveData<PagedList<Routine>>().also {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    it.postValue(userRepository.getCurrentUserRoutines())
-                }
-                catch (ex:Exception) {
-                    println("Error al cargar rutinas ${ex.stackTrace}")
-                }
+            refreshRoutines()
+        }
+    }
+    val routines:LiveData<PagedList<Routine>> = _routines
+
+
+    fun refreshRoutines() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _routines.postValue(userRepository.getCurrentUserRoutines())
+            }
+            catch (ex:Exception) {
+                println("Error al cargar rutinas ${ex.stackTrace}")
             }
         }
     }
@@ -45,4 +55,6 @@ class HomeViewModel(private val app: MainApplication) : ViewModel() {
     fun toggleFavorite() {
         _onlyFavorite.value = !_onlyFavorite.value!!
     }
+
+
 }

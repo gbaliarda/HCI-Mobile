@@ -1,6 +1,8 @@
 package ar.edu.itba.hci.android.ui.home
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.MainViewModel
@@ -16,6 +19,10 @@ import ar.edu.itba.hci.android.databinding.FragmentHomeBinding
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModelFactory
 import java.util.*
+
+import android.util.TypedValue
+import ar.edu.itba.hci.android.R
+
 
 class HomeFragment : Fragment() {
 
@@ -65,12 +72,13 @@ class HomeFragment : Fragment() {
     private fun sortAndFilter(search:String?) {
         val fav = model.onlyFavorite.value
         val order = model.ordering.value
-        adapter.routines = routines.filter { fav == null || !fav || it.metadata?.favorite == fav }
+        adapter.routines = routines.filter { fav == null || !fav || it.metadata.favorite == fav }
             .sortedWith(
                 when(order) {
                     Ordering.DATE -> compareBy { it.date }
                     Ordering.DIFFICULTY -> compareBy { it.difficulty }
-                    Ordering.SCORE -> compareBy { it.score }
+                    Ordering.SCORE -> compareByDescending { it.metadata.score }
+                    Ordering.DURATION -> compareBy { it.metadata.duration }
                     else -> compareBy { it.date }
                 }
             )
@@ -87,6 +95,7 @@ class HomeFragment : Fragment() {
         //TODO: Recyclerview horizontal
 
         binding.recycler?.layoutManager = LinearLayoutManager(context)
+//        binding.recycler?.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
         binding.recycler?.adapter = adapter
 
         model.routines.observe(viewLifecycleOwner, {
@@ -102,11 +111,22 @@ class HomeFragment : Fragment() {
                 return true
             }
         })
+
+
+        //Get colorPrimary
+        val typedValue = TypedValue()
+        requireContext().theme.resolveAttribute(R.attr.colorPrimary, typedValue, true)
+        val colorPrimary = typedValue.data
+
+        binding.swipeRefresh?.setColorSchemeColors(colorPrimary)
+        binding.swipeRefresh?.isRefreshing = true
+        binding.swipeRefresh?.setOnRefreshListener {
+            model.refreshRoutines()
+        }
             
         model.routines.observe(viewLifecycleOwner, {
             adapter.routines = it.content
-            binding.spinner?.visibility = View.GONE
-            binding.content?.visibility = View.VISIBLE
+            binding.swipeRefresh?.isRefreshing = false
         })
     }
 

@@ -1,11 +1,11 @@
 package ar.edu.itba.hci.android.ui.routine
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
-import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -21,6 +21,7 @@ import ar.edu.itba.hci.android.databinding.FragmentRoutineBinding
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModel
 import ar.edu.itba.hci.android.ui.execution.ExecutionViewModelFactory
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
     private val args: RoutineFragmentArgs by navArgs()
@@ -46,6 +47,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -54,6 +56,9 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         binding.exerciseRecycler.layoutManager = LinearLayoutManager(context)
         binding.exerciseRecycler.adapter = exerciseAdapter
 
+        binding.backButton.setOnClickListener {
+            findNavController().navigate(R.id.navigation_home)
+        }
         binding.shareButton.setOnClickListener { shareHandler() }
         binding.ratingBar.onRatingBarChangeListener = this
         binding.ratingBar.stepSize = 1F
@@ -62,6 +67,7 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             if (model.liked.value != null) {
                 model.liked.value = !model.liked.value!!
             }
+            model.likeRoutine()
         }
 
         model.routine.observe(viewLifecycleOwner, {
@@ -69,7 +75,14 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
             binding.routineName.text = it.name
             binding.description.text = it.description
             binding.time.text = getString(R.string.routine_minutes, it.durationMinutes)
-            binding.difficulty.text = it.difficulty
+            if (Locale.getDefault().displayLanguage == "español")
+                when(it.difficulty) {
+                    "rookie", "beginner" -> binding.difficulty.text = "Principiante"
+                    "intermediate" -> binding.difficulty.text = "Intermedia"
+                    "advanced", "expert" -> binding.difficulty.text = "Avanzada"
+                }
+            else
+                binding.difficulty.text = it.difficulty[0].uppercase() + it.difficulty.substring(1)
             binding.spinner.visibility = View.GONE
             binding.content.visibility = View.VISIBLE
 
@@ -82,10 +95,14 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         model.liked.observe(viewLifecycleOwner, {
             likeHandler(it)
         })
+
+        model.scoreValue.observe(viewLifecycleOwner, {
+            binding.ratingBar.rating = it.toFloat()
+        })
     }
 
     override fun onRatingChanged(p0: RatingBar?, p1: Float, p2: Boolean) {
-        Toast.makeText(context, p1.toString(), Toast.LENGTH_SHORT).show()
+        model.scoreRoutine(p1.toInt())
     }
 
     override fun onDestroyView() {
@@ -112,10 +129,6 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         }
     }
 
-    private fun reviewHandler() {
-        notImplemented()
-    }
-
     private fun startHandler() {
         mainViewModel.isExercising = true
         if(exViewModel.routineID != model.routine.value?.id) {
@@ -130,8 +143,4 @@ class RoutineFragment : Fragment(), RatingBar.OnRatingBarChangeListener {
         else findNavController().navigate(R.id.executionFragment)
     }
 
-    private fun notImplemented() {
-        Snackbar.make(binding.root, "Not Implemented", Snackbar.LENGTH_SHORT)
-            .show()
-    }
 }
