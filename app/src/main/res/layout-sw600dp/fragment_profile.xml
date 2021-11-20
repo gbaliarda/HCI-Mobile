@@ -43,8 +43,7 @@
                 android:src="@drawable/ic_baseline_notifications_24"
                 app:layout_constraintBottom_toBottomOf="@+id/myProfile"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/myProfile"
-                app:tint="?attr/colorOnSurface" />
+                app:layout_constraintTop_toTopOf="@+id/myProfile" />
 
             <Button
                 android:id="@+id/cerrarSesion"

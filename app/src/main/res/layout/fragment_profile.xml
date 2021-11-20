@@ -59,8 +59,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/myProfile"
                 app:layout_constraintVertical_bias="0.09"
-                tools:ignore="ImageContrastCheck"
-                app:tint="?attr/colorPrimary" />
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/titleProfile"
