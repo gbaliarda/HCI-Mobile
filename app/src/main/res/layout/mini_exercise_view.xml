@@ -82,8 +82,8 @@
             android:layout_width="40dp"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/ic_baseline_play_arrow_24"
-            app:tint="?attr/colorOnPrimary"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:tint="?attr/colorOnPrimary"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/next_exercise"

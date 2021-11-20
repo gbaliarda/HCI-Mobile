@@ -162,9 +162,11 @@ class MainActivity : AppCompatActivity() {
                 exViewModel.executionList.size/2
             )
             if (it.exercise.repetitionType == Exercise.RepetitionType.TIMES) {
+                binding.controller.play.alpha = 0.2f
                 binding.controller.play.isEnabled = false
                 binding.controller.bottomText.text = getString(R.string.miniplayer_repetitions, it.exercise.repetitionValue)
             } else {
+                binding.controller.play.alpha = 1.0f
                 binding.controller.play.isEnabled = true
 
                 val seconds:Int =
