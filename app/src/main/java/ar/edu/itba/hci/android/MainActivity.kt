@@ -222,7 +222,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pauseOrPlay() {
-        exViewModel.isPlaying.value = binding.controller.play.isVisible
+        exViewModel.timerRunning.value?.let {
+            exViewModel.isPlaying.value = !it
+        }
     }
 
     private fun startTimer() {
