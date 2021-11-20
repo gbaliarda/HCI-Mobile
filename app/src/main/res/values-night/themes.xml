@@ -18,4 +18,6 @@
         <item name="buttonStyle">@style/PrimaryButton</item>
         <item name="imageButtonStyle">@style/PrimaryIconButton</item>
     </style>
+
+    <style name="Theme.HCIAndroid.Final" parent="Theme.HCIAndroid" />
 </resources>

@@ -14,7 +14,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HCIAndroid">
+        android:theme="@style/Theme.HCIAndroid.Final">
         <service
             android:name=".ui.execution.ExecutionService"
             android:enabled="true"
