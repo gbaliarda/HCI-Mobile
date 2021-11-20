@@ -155,6 +155,14 @@ class MainActivity : AppCompatActivity() {
         })
 
         exViewModel.currentExercise.observe(this, {
+            if(it.isRest) {
+                binding.controller.exerciseName.text = getString(R.string.execution_rest)
+                exViewModel.timer.value = it.exercise.restTime
+                binding.controller.play.alpha = 1.0f
+                binding.controller.play.isEnabled = true
+                return@observe
+            }
+
             binding.controller.exerciseName.text = it.exercise.name
             binding.controller.exerciseCount.text = getString(
                 R.string.execution_exercise_count,
