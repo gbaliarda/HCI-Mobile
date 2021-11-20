@@ -211,7 +211,7 @@
             app:layout_constraintStart_toEndOf="@+id/playOrPauseButton"
             app:layout_constraintTop_toTopOf="@+id/playOrPauseButton"
             app:layout_constraintVertical_bias="0.571"
-            app:tint="?attr/colorPrimaryVariant"
+            app:tint="?attr/colorPrimary"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <ImageButton
@@ -227,7 +227,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/playOrPauseButton"
             app:layout_constraintEnd_toStartOf="@+id/playOrPauseButton"
             app:layout_constraintTop_toTopOf="@+id/playOrPauseButton"
-            app:tint="?attr/colorPrimaryVariant"
+            app:tint="?attr/colorPrimary"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
