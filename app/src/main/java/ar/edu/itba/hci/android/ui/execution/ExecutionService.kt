@@ -17,7 +17,7 @@ import java.lang.IllegalStateException
 
 class ExecutionService : LifecycleService() {
     companion object {
-        private const val NOTIF_CHANNEL_ID = "execution_channel"
+        const val NOTIF_CHANNEL_ID = "execution_channel"
         private const val NOTIF_ID = 1
         private const val ACTION_PAUSE = "PAUSE"
         private const val ACTION_RESUME = "RESUME"
@@ -81,8 +81,6 @@ class ExecutionService : LifecycleService() {
         filter.addAction(ACTION_RESUME)
         registerReceiver(broadcastReceiver, filter)
 
-        createNotificationChannel()
-
         model!!.timer.observe(this, {
             updateNotif()
         })
@@ -137,17 +135,6 @@ class ExecutionService : LifecycleService() {
             .setContentIntent(openPendingIntent)
             .addAction(buttonAction)
             .build()
-    }
-
-    private fun createNotificationChannel() {
-        val name = getString(R.string.execution_channel_title)
-        val desc = getString(R.string.execution_channel_desc)
-        val importance = NotificationManager.IMPORTANCE_LOW
-        val channel = NotificationChannel(NOTIF_CHANNEL_ID, name, importance)
-        channel.description = desc
-        val notificationManager =
-            getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
     }
 
     inner class Binder : android.os.Binder() {
