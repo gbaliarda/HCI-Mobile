@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,16 +18,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import ar.edu.itba.hci.android.MainActivity
+import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.databinding.FragmentLoginBinding
 
 import ar.edu.itba.hci.android.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment() {
 
-    private lateinit var loginViewModel: LoginViewModel
-    private var _binding: FragmentLoginBinding? = null
+    private val app:MainApplication by lazy {
+        requireActivity().application as MainApplication
+    }
+    private val loginViewModel: LoginViewModel by viewModels { LoginViewModelFactory(app) }
 
+    private var _binding: FragmentLoginBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -34,22 +44,24 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-            .get(LoginViewModel::class.java)
+
+        loginViewModel.checkToken()
 
         val usernameEditText = binding.username
         val passwordEditText = binding.password
         val loginButton = binding.login
         val loadingProgressBar = binding.loading
+
+        val eye_open = binding.eyeOpen
+        val eye_close = binding.eyeClose
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
@@ -57,12 +69,6 @@ class LoginFragment : Fragment() {
                     return@Observer
                 }
                 loginButton.isEnabled = loginFormState.isDataValid
-                loginFormState.usernameError?.let {
-                    usernameEditText.error = getString(it)
-                }
-                loginFormState.passwordError?.let {
-                    passwordEditText.error = getString(it)
-                }
             })
 
         loginViewModel.loginResult.observe(viewLifecycleOwner,
@@ -111,22 +117,43 @@ class LoginFragment : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
         }
+
+        eye_close.setOnClickListener{ showPassword() }
+        eye_open.setOnClickListener { hidePassword() }
+
+
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome) + model.displayName
+        val welcome = getString(R.string.welcome, model.displayName)
         // TODO : initiate successful logged in experience
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
+
+        val intent = Intent(activity, MainActivity::class.java)
+        startActivity(intent)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
+
+    private fun showPassword(){
+        binding.eyeClose.visibility = View.INVISIBLE
+        binding.password.transformationMethod = HideReturnsTransformationMethod.getInstance()
+        binding.eyeOpen.visibility = View.VISIBLE
+    }
+
+    private fun hidePassword(){
+        binding.eyeOpen.visibility = View.INVISIBLE
+        binding.password.transformationMethod = PasswordTransformationMethod.getInstance()
+        binding.eyeClose.visibility = View.VISIBLE
+    }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

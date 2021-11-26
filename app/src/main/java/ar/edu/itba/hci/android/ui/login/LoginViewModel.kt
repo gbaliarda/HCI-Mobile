@@ -1,15 +1,23 @@
 package ar.edu.itba.hci.android.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import androidx.lifecycle.*
+import ar.edu.itba.hci.android.MainApplication
 import ar.edu.itba.hci.android.data.LoginRepository
 import ar.edu.itba.hci.android.data.Result
 
 import ar.edu.itba.hci.android.R
+import ar.edu.itba.hci.android.api.model.ApiError
+import ar.edu.itba.hci.android.api.model.Credentials
+import ar.edu.itba.hci.android.repository.UserRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel(
+    private val application: MainApplication
+    ) : ViewModel() {
+
+    private val userRepository = application.userRepository
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -17,15 +25,32 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
+    fun checkToken() {
+        application.preferences.authToken?.let {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    val user = userRepository.getCurrentUser()
+                    _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = user.firstName!!)))
+                }
+                catch (ex:Exception) {
+                    application.preferences.authToken = null
+                }
+            }
+        }
+    }
 
-        if (result is Result.Success) {
-            _loginResult.value =
-                LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+    fun login(username: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = userRepository.login(Credentials(username, password))
+                application.preferences.authToken = result.token
+
+                val user = userRepository.getCurrentUser()
+                _loginResult.postValue(LoginResult(success = LoggedInUserView(displayName = user.firstName!!)))
+            }
+            catch (ex:Exception) {
+                _loginResult.postValue(LoginResult(error = R.string.login_failed))
+            }
         }
     }
 
@@ -50,6 +75,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length >= 8
     }
 }

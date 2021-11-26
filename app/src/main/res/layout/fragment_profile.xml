@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.profile.ProfileFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:id="@+id/myProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="@string/mi_perfil"
+                android:textAlignment="center"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settings"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="@string/settings"
+                android:src="@drawable/ic_baseline_notifications_24"
+                app:layout_constraintBottom_toBottomOf="@+id/myProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/myProfile"
+                app:tint="?attr/colorOnSurface" />
+
+            <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/profileimage"
+                android:src="@drawable/ic_profile_default"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/myProfile"
+                app:layout_constraintVertical_bias="0.09"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/titleProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/informacion_basica"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profileImg" />
+
+            <TextView
+                android:id="@+id/userProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text=""
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/nameProfile"
+                app:layout_constraintTop_toTopOf="@+id/nameProfile"
+                tools:text="test user"/>
+
+            <TextView
+                android:id="@+id/nameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/nombre"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleProfile" />
+
+            <TextView
+                android:id="@+id/nameProfile3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/email"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameProfile" />
+
+            <TextView
+                android:id="@+id/userProfileName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text=""
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/nameProfile3"
+                app:layout_constraintTop_toTopOf="@+id/nameProfile3"
+                tools:text="test@test.com"/>
+
+            <Button
+                android:id="@+id/cerrarSesion"
+                android:layout_width="196dp"
+                android:layout_height="53dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:elevation="0dp"
+                android:text="@string/cerrar_sesion"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameProfile3"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

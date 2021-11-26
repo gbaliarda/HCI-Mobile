@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="17dp">
+
+    <TextView
+        android:id="@+id/exName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sentadillas" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/orange"
+        app:layout_constraintEnd_toEndOf="@+id/exName"
+        app:layout_constraintStart_toStartOf="@+id/exName"
+        app:layout_constraintTop_toBottomOf="@+id/exName" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/exName2"
+        app:layout_constraintEnd_toStartOf="@+id/exName2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/exName2" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/exName3"
+        app:layout_constraintEnd_toStartOf="@+id/exName3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/exName3" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginStart="20dp"
+        android:background="@color/orange"
+        app:layout_constraintBottom_toBottomOf="@+id/exName4"
+        app:layout_constraintEnd_toStartOf="@+id/exName4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/exName4" />
+
+    <TextView
+        android:id="@+id/exName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:text="Dificultad:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exName" />
+
+    <TextView
+        android:id="@+id/exName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Grupo muscular:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/exName2"
+        app:layout_constraintTop_toBottomOf="@+id/exName2" />
+
+    <TextView
+        android:id="@+id/exName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Descripción:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/exName2"
+        app:layout_constraintTop_toBottomOf="@+id/exName3" />
+
+    <TextView
+        android:id="@+id/exDiff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/exName2"
+        app:layout_constraintStart_toEndOf="@+id/exName2"
+        app:layout_constraintTop_toTopOf="@+id/exName2"
+        tools:text="intermedia" />
+
+    <TextView
+        android:id="@+id/exGrp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/exName3"
+        app:layout_constraintStart_toEndOf="@+id/exName3"
+        app:layout_constraintTop_toTopOf="@+id/exName3"
+        tools:text="piernas" />
+
+    <TextView
+        android:id="@+id/exDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/exName4"
+        app:layout_constraintTop_toBottomOf="@+id/exName4"
+        tools:text="Esta es una descripcion un poco larga del ejercicio para ver como queda" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

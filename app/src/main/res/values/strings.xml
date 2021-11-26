@@ -1,27 +1,91 @@
 <resources>
-    <string name="app_name">traning</string>
-    <string name="title_home">Inicio</string>
-    <string name="title_dashboard">Rutina</string>
-    <string name="title_notifications">Perfil</string>
+    <string name="app_name" translatable="false">traning</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Routine</string>
+    <string name="title_profile">Profile</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email" translatable="false">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Iniciar sesión</string>
-    <string name="action_sign_up">Registrarse</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_up">Sign up</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="welcome">Welcome %s!</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="bienvenido">Welcome</string>
+    <!-- Strings related to home -->
+    <string name="mis_rutinas">My Routines</string>
+    <string name="routine_card_fav_button_description">Like</string>
+     <string name="iniciar">Start</string>
     <!-- Strings related to profile -->
-    <string name="mi_perfil">Mi Perfil</string>
+    <string name="mi_perfil">My Profile</string>
     <string name="settings">Settings</string>
-    <string name="profileimage">profileImage</string>
-    <string name="informaci_n_b_sica">Información Básica</string>
+    <string name="profileimage">Profile Image</string>
+    <string name="informacion_basica">Basic Information</string>
     <string name="edit_profile_icon">Edit profile icon</string>
-    <string name="cerrar_sesion">Cerrar sesión</string>
-    <string name="bperalta96_gmail_com">bperalta96@gmail.com</string>
-    <string name="email">Email:</string>
-    <string name="nombre">Nombre:</string>
-    <string name="bruno_peralta">Bruno Peralta</string>
+    <string name="cerrar_sesion">Log out</string>
+    <string name="email" translatable="false">Email:</string>
+    <string name="nombre">Name:</string>
+    <string name="exercise_card_info_button_description" translatable="false">Info</string>
+    <string name="back_button_description">Go Back</string>
+    <string name="Exercise_name" translatable="false">Soga</string>
+    <string name="RepetitionOrTime_value" translatable="false">14</string>
+    <string name="share_button_description">Share</string>
+    <string name="like_button_description">Like</string>
+    <string name="share_title">Share routine link</string>
+    <string name="dash" translatable="false">-</string>
+    <string name="routine_start_button">Start</string>
+    <string name="routine_minutes">%d minutes</string>
+    <string name="routine_exercise_count">%d exercises</string>
+    <string name="exercise_seconds">%d seconds</string>
+    <string name="exercise_repetitions">%d repetitions</string>
+    <string name="exercise_sets" translatable="false">" x%d"</string>
+    <string name="routine_review_button">Score</string>
+    <string name="explorar_rutinas">Explore Routines</string>
+    <string name="filtrar">Filter</string>
+    <string name="buscar">Search</string>
+    <string name="pause">Pause</string>
+    <!-- Strings related to Notifications -->
+    <string name="guardar">Save</string>
+    <string name="notificaciones">Notifications</string>
+    <string name="horario_de_recordatorio_diario">Daily reminder</string>
+    <string name="cycle_header_repetitions">%d repetitions</string>
+    <string name="routine_fetch_error">Error fetching routine</string>
+    <string name="exercise_minutes">%d minutes</string>
+    <string name="fragment_routine_description_label">Description</string>
+    <string name="notifTitle" translatable="false">Traning</string>
+    <string name="notifDesc">Time to do some exercise!</string>
+    <string name="notif_disable">Reminder removed</string>
+    <string name="notif_enable">Please enable notifications</string>
+    <string name="notif_enabled_key" translatable="false">notif_enabled</string>
+    <string name="reminder_set">Reminder set</string>
+    <string name="play">Play</string>
+    <string name="more_information">more_Information</string>
+    <!-- Strings related to Executions -->
+    <string name="formatted_time">%02d:%02d</string>
+    <string name="execution_channel_title">Execution</string>
+    <string name="execution_channel_desc">Routine execution notifications</string>
+    <string name="execution_notif_title">Routine: %s</string>
+    <string name="execution_notif_content">Remaining time: %ds</string>
+    <string name="resume">Resume</string>
+    <string name="routine_start_button_continue">Continue</string>
+    <string name="execution_exercise_count">Exercise %d / %d</string>
+    <string name="execution_sets">Set %d / %d</string>
+    <string name="timer">%ds</string>
+    <string name="miniplayer_timer">"%ds - "</string>
+    <string name="miniplayer_repetitions">"x%d - "</string>
+    <string name="main_start_routine_button">Start</string>
+    <!-- Strings related to Errors -->
+    <string name="filterTitle">Sort Routines</string>
+    <string name="filterDate">Creation date</string>
+    <string name="filterDifficulty">Difficulty</string>
+    <string name="filterScore">Score</string>
+    <string name="filterFav">Show only favorites</string>
+    <!-- Strings related to Errors -->
+    <string name="userNotOwner">Error: User is not owner</string>
+    <string name="userNotLogin">Error: User is not logged in</string>
+    <string name="duration">Duration</string>
+    <string name="execution_rest">Break time</string>
+    <string name="rating_saved">Rating saved</string>
 </resources>
